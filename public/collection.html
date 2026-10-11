@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Collection</title>
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script type="module" src="/js/pages/collection.js"></script>
+  </head>
+  <body>
+    <header id="site-header" class="site-header"></header>
+
+    <main id="main" class="container page">
+      <div class="page-intro">
+        <h1 class="page-title" data-collection-title data-i18n="collection.title"></h1>
+        <p class="muted" data-i18n="collection.intro"></p>
+      </div>
+
+      <div class="collection">
+        <details class="filters" open data-filters-panel>
+          <summary class="filters__summary" data-i18n="collection.filters"></summary>
+          <form class="filters__form" data-filters>
+            <fieldset class="filter-group">
+              <legend data-i18n="collection.category"></legend>
+              <div class="pill-group" data-category-options></div>
+            </fieldset>
+            <fieldset class="filter-group">
+              <legend data-i18n="collection.price"></legend>
+              <div class="radio-list" data-price-options></div>
+            </fieldset>
+            <fieldset class="filter-group">
+              <label class="checkbox">
+                <input type="checkbox" name="sale" value="1" />
+                <span data-i18n="collection.onSale"></span>
+              </label>
+            </fieldset>
+            <button type="button" class="btn btn--link" data-clear data-i18n="collection.clear"></button>
+          </form>
+        </details>
+
+        <section class="collection__results" aria-live="polite">
+          <div class="toolbar">
+            <p class="toolbar__count" data-count></p>
+            <label class="toolbar__sort">
+              <span data-i18n="collection.sort"></span>
+              <select name="sort" data-sort>
+                <option value="featured" data-i18n="collection.sort.featured"></option>
+                <option value="price-asc" data-i18n="collection.sort.priceAsc"></option>
+                <option value="price-desc" data-i18n="collection.sort.priceDesc"></option>
+              </select>
+            </label>
+          </div>
+          <div class="product-grid" data-grid></div>
+          <div class="empty-state" data-empty hidden>
+            <p data-i18n="collection.empty"></p>
+            <button type="button" class="btn btn--secondary" data-clear data-i18n="collection.clear"></button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer id="site-footer" class="site-footer"></footer>
+  </body>
+</html>
