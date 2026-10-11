@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Store</title>
+    <meta name="description" content="Fictional premium menswear store (portfolio demo)." />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" type="image/avif" imagesrcset="/img/photos/hero-640.avif 640w, /img/photos/hero-1280.avif 1280w, /img/photos/hero-1920.avif 1920w" imagesizes="100vw" fetchpriority="high" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script type="module" src="/js/pages/home.js"></script>
+  </head>
+  <body class="page-home">
+    <header id="site-header" class="site-header"></header>
+
+    <main id="main">
+      <!-- 1. Full-screen campaign hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__media" data-hero-media></div>
+        <div class="hero__content container">
+          <p class="overline overline--light" data-i18n="home.hero.eyebrow"></p>
+          <h1 id="hero-title" class="hero__title" data-i18n="home.hero.title"></h1>
+          <a href="/collection" class="text-cta text-cta--light" data-cta="hero_collection" data-i18n="home.hero.cta"></a>
+        </div>
+      </section>
+
+      <!-- 2. Two editorial panels -->
+      <section class="panels container" aria-label="Featured categories">
+        <a href="/collection?category=knitwear" class="panel" data-cta="panel_knitwear" data-reveal>
+          <div class="panel__media" data-photo="panel-knitwear"></div>
+          <div class="panel__caption">
+            <p class="overline" data-i18n="home.panel.knitwear.eyebrow"></p>
+            <h2 class="panel__title" data-i18n="home.panel.knitwear.title"></h2>
+            <span class="text-cta" data-i18n="home.panel.knitwear.cta"></span>
+          </div>
+        </a>
+        <a href="/collection?category=shirts" class="panel panel--offset" data-cta="panel_shirts" data-reveal>
+          <div class="panel__media" data-photo="panel-shirts"></div>
+          <div class="panel__caption">
+            <p class="overline" data-i18n="home.panel.shirts.eyebrow"></p>
+            <h2 class="panel__title" data-i18n="home.panel.shirts.title"></h2>
+            <span class="text-cta" data-i18n="home.panel.shirts.cta"></span>
+          </div>
+        </a>
+      </section>
+
+      <!-- 3. New arrivals on a neutral ground -->
+      <section class="arrivals" aria-labelledby="arrivals-title">
+        <div class="container">
+          <div class="section__head" data-reveal>
+            <h2 id="arrivals-title" class="section__title" data-i18n="home.new.title"></h2>
+            <a href="/collection" class="text-cta" data-cta="arrivals_view_all" data-i18n="home.new.link"></a>
+          </div>
+          <div class="arrivals__row" data-arrivals></div>
+        </div>
+      </section>
+
+      <!-- 4. Material -->
+      <section class="material container" aria-labelledby="material-title">
+        <div class="material__media" data-photo="material-knit" data-reveal></div>
+        <div class="material__text" data-reveal>
+          <p class="overline" data-i18n="home.material.eyebrow"></p>
+          <h2 id="material-title" class="material__title" data-i18n="home.material.title"></h2>
+          <p class="material__body" data-i18n="home.material.text"></p>
+          <a href="/collection?category=knitwear" class="text-cta" data-cta="material_knitwear" data-i18n="home.material.cta"></a>
+        </div>
+      </section>
+
+      <!-- 5. Mini editorial -->
+      <section class="lookbook container" aria-labelledby="lookbook-title">
+        <div class="lookbook__head" data-reveal>
+          <p class="overline" data-i18n="home.lookbook.eyebrow"></p>
+          <h2 id="lookbook-title" class="section__title" data-i18n="home.lookbook.title"></h2>
+        </div>
+        <div class="lookbook__grid">
+          <figure class="look look--1" data-reveal>
+            <div class="look__media" data-photo="look-window"></div>
+            <figcaption class="overline" data-i18n="home.lookbook.1"></figcaption>
+          </figure>
+          <figure class="look look--2" data-reveal>
+            <div class="look__media" data-photo="look-shearling"></div>
+            <figcaption class="overline" data-i18n="home.lookbook.2"></figcaption>
+          </figure>
+          <figure class="look look--3" data-reveal>
+            <div class="look__media" data-photo="look-cuff"></div>
+            <figcaption class="overline" data-i18n="home.lookbook.3"></figcaption>
+          </figure>
+          <figure class="look look--4" data-reveal>
+            <div class="look__media" data-photo="craft-rack"></div>
+            <figcaption class="overline" data-i18n="home.lookbook.4"></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 6. Members club + style advisor -->
+      <section class="services container" aria-label="Membership and appointments">
+        <div class="club" data-reveal>
+          <p class="overline overline--light" data-i18n="home.club.eyebrow"></p>
+          <h2 class="club__title" data-i18n="home.club.title"></h2>
+          <p class="club__text" data-i18n="home.club.text"></p>
+          <ul class="club__benefits">
+            <li data-i18n="home.club.benefit.1"></li>
+            <li data-i18n="home.club.benefit.2"></li>
+            <li data-i18n="home.club.benefit.3"></li>
+          </ul>
+          <form class="inline-form" novalidate data-club-form>
+            <label for="club-email" class="visually-hidden" data-i18n="home.club.placeholder"></label>
+            <input id="club-email" type="email" name="email" autocomplete="off" required
+                   data-i18n-attr="placeholder:home.club.placeholder" />
+            <button type="submit" class="btn btn--light" data-i18n="home.club.button"></button>
+          </form>
+          <p class="form-status" role="status" aria-live="polite" data-club-status></p>
+          <p class="fine-print" data-i18n="home.club.note"></p>
+        </div>
+
+        <div class="advisor" data-reveal>
+          <div class="advisor__media" data-photo="advisor"></div>
+          <div class="advisor__body">
+            <p class="overline" data-i18n="home.advisor.eyebrow"></p>
+            <h2 class="advisor__title" data-i18n="home.advisor.title"></h2>
+            <p class="muted" data-i18n="home.advisor.text"></p>
+            <form class="advisor__form" novalidate data-advisor-form>
+              <fieldset class="segmented">
+                <legend class="label" data-i18n="home.advisor.format"></legend>
+                <label><input type="radio" name="format" value="store" checked /><span data-i18n="home.advisor.format.store"></span></label>
+                <label><input type="radio" name="format" value="video" /><span data-i18n="home.advisor.format.video"></span></label>
+              </fieldset>
+              <div class="advisor__selects">
+                <label class="field">
+                  <span class="label" data-i18n="home.advisor.day"></span>
+                  <select name="day" data-advisor-day></select>
+                </label>
+                <label class="field">
+                  <span class="label" data-i18n="home.advisor.time"></span>
+                  <select name="time" data-advisor-time></select>
+                </label>
+              </div>
+              <button type="submit" class="btn btn--secondary btn--block" data-cta="advisor_book" data-i18n="home.advisor.button"></button>
+            </form>
+            <p class="form-status" role="status" aria-live="polite" data-advisor-status></p>
+            <p class="fine-print" data-i18n="home.advisor.note"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 7. Footer with monogram (rendered by layout.js) -->
+    <footer id="site-footer" class="site-footer"></footer>
+  </body>
+</html>
