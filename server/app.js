@@ -3,6 +3,7 @@ const express = require('express');
 
 const productsRouter = require('./routes/products');
 const { createEventsRouter } = require('./routes/events');
+const { createDashboardRouter, dashboardAuth } = require('./routes/dashboard');
 
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
@@ -17,9 +18,9 @@ function parseTrustProxy(value) {
 /**
  * Builds the Express app without starting it, so tests can import it
  * without opening a port.
- * @param {{ rateLimit?: import('express').RequestHandler }} [options]
+ * @param {{ rateLimit?: import('express').RequestHandler, dashboardCacheMs?: number }} [options]
  */
-function createApp({ rateLimit } = {}) {
+function createApp({ rateLimit, dashboardCacheMs } = {}) {
   const app = express();
 
   app.disable('x-powered-by');
@@ -30,6 +31,15 @@ function createApp({ rateLimit } = {}) {
   app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
   app.use('/api/products', productsRouter);
   app.use('/api/events', createEventsRouter(rateLimit ? { rateLimit } : undefined));
+
+  const protect = dashboardAuth(process.env.DASHBOARD_PASSWORD);
+  app.use('/api/dashboard', protect, createDashboardRouter({ cacheMs: dashboardCacheMs }));
+  app.get(['/dashboard', '/dashboard.html'], protect);
+
+  // Chart.js is self-hosted (no third-party CDN request) straight from node_modules.
+  // The package's "exports" map hides dist/, so resolve its main entry and step beside it.
+  const chartJsUmd = path.join(path.dirname(require.resolve('chart.js')), 'chart.umd.js');
+  app.get('/vendor/chart.umd.js', (req, res) => res.sendFile(chartJsUmd, { maxAge: '7d' }));
 
   // Unknown API routes return JSON, never the HTML 404 page.
   app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
