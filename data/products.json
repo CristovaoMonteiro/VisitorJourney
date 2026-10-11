@@ -1,0 +1,254 @@
+[
+  {
+    "id": "p01",
+    "slug": "oxford-button-down-shirt",
+    "category": "shirts",
+    "shape": "shirt",
+    "price": 79,
+    "compareAtPrice": null,
+    "color": { "hex": "#DCE3EC", "name": { "en": "Pale blue", "pt": "Azul-claro" } },
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "sizeGuide": "tops",
+    "featured": true,
+    "name": { "en": "Oxford Button-Down Shirt", "pt": "Camisa Oxford Button-Down" },
+    "description": {
+      "en": "A wardrobe cornerstone in soft Oxford cotton, with a rolled button-down collar and a relaxed, regular fit.",
+      "pt": "Uma peça essencial em algodão Oxford macio, com gola button-down e corte regular descontraído."
+    },
+    "details": {
+      "en": ["100% cotton Oxford weave", "Button-down collar", "Regular fit", "Machine wash at 30 °C"],
+      "pt": ["100% algodão em tecido Oxford", "Gola button-down", "Corte regular", "Lavar à máquina a 30 °C"]
+    }
+  },
+  {
+    "id": "p02",
+    "slug": "linen-camp-collar-shirt",
+    "category": "shirts",
+    "shape": "shirt",
+    "price": 89,
+    "compareAtPrice": 119,
+    "color": { "hex": "#E8E0CF", "name": { "en": "Sand", "pt": "Areia" } },
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "sizeGuide": "tops",
+    "featured": false,
+    "name": { "en": "Linen Camp-Collar Shirt", "pt": "Camisa de Linho Gola Aberta" },
+    "description": {
+      "en": "Breathable European linen cut with an open camp collar. Made for warm days and slow evenings.",
+      "pt": "Linho europeu respirável com gola aberta. Feita para dias quentes e fins de tarde tranquilos."
+    },
+    "details": {
+      "en": ["100% linen", "Camp collar", "Relaxed fit", "Gets softer with every wash"],
+      "pt": ["100% linho", "Gola aberta", "Corte descontraído", "Fica mais macia a cada lavagem"]
+    }
+  },
+  {
+    "id": "p03",
+    "slug": "classic-pique-polo",
+    "category": "polos",
+    "shape": "polo",
+    "price": 59,
+    "compareAtPrice": null,
+    "color": { "hex": "#22304A", "name": { "en": "Navy", "pt": "Azul-marinho" } },
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "sizeGuide": "tops",
+    "featured": true,
+    "name": { "en": "Classic Piqué Polo", "pt": "Polo Piqué Clássico" },
+    "description": {
+      "en": "Heavyweight cotton piqué with a two-button placket and ribbed collar that keeps its shape.",
+      "pt": "Piqué de algodão encorpado, com carcela de dois botões e gola canelada que mantém a forma."
+    },
+    "details": {
+      "en": ["100% cotton piqué", "Two-button placket", "Ribbed collar and cuffs", "Regular fit"],
+      "pt": ["100% algodão piqué", "Carcela de dois botões", "Gola e punhos canelados", "Corte regular"]
+    }
+  },
+  {
+    "id": "p04",
+    "slug": "merino-knitted-polo",
+    "category": "polos",
+    "shape": "polo",
+    "price": 95,
+    "compareAtPrice": 125,
+    "color": { "hex": "#B9A68A", "name": { "en": "Camel", "pt": "Camelo" } },
+    "sizes": ["S", "M", "L", "XL"],
+    "sizeGuide": "tops",
+    "featured": false,
+    "name": { "en": "Merino Knitted Polo", "pt": "Polo de Malha Merino" },
+    "description": {
+      "en": "A fine-gauge merino polo that sits between smart and casual. Wear it alone or under a blazer.",
+      "pt": "Polo em malha fina de merino, entre o formal e o casual. Usa-se sozinho ou por baixo de um blazer."
+    },
+    "details": {
+      "en": ["100% extra-fine merino wool", "Fine-gauge knit", "Slim fit", "Hand wash cold"],
+      "pt": ["100% lã merino extrafina", "Malha de galga fina", "Corte justo", "Lavar à mão a frio"]
+    }
+  },
+  {
+    "id": "p05",
+    "slug": "lambswool-crew-neck",
+    "category": "knitwear",
+    "shape": "knit",
+    "price": 110,
+    "compareAtPrice": null,
+    "color": { "hex": "#6E7B6A", "name": { "en": "Moss", "pt": "Musgo" } },
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "sizeGuide": "tops",
+    "featured": true,
+    "name": { "en": "Lambswool Crew-Neck Sweater", "pt": "Camisola de Gola Redonda em Lã de Cordeiro" },
+    "description": {
+      "en": "Warm, light and naturally breathable lambswool in a timeless crew-neck shape.",
+      "pt": "Lã de cordeiro quente, leve e naturalmente respirável, com uma gola redonda intemporal."
+    },
+    "details": {
+      "en": ["100% lambswool", "Ribbed neck, cuffs and hem", "Regular fit", "Hand wash cold"],
+      "pt": ["100% lã de cordeiro", "Gola, punhos e bainha canelados", "Corte regular", "Lavar à mão a frio"]
+    }
+  },
+  {
+    "id": "p06",
+    "slug": "cable-knit-cardigan",
+    "category": "knitwear",
+    "shape": "cardigan",
+    "price": 145,
+    "compareAtPrice": 189,
+    "color": { "hex": "#EFE9DC", "name": { "en": "Ecru", "pt": "Cru" } },
+    "sizes": ["S", "M", "L", "XL"],
+    "sizeGuide": "tops",
+    "featured": false,
+    "name": { "en": "Cable-Knit Cardigan", "pt": "Casaco de Malha com Tranças" },
+    "description": {
+      "en": "A chunky cable-knit cardigan with horn-effect buttons. Built for layering on cold mornings.",
+      "pt": "Casaco de malha grossa com tranças e botões efeito chifre. Ideal para sobrepor em manhãs frias."
+    },
+    "details": {
+      "en": ["70% wool, 30% cotton", "Cable-knit front", "Horn-effect buttons", "Relaxed fit"],
+      "pt": ["70% lã, 30% algodão", "Frente com tranças", "Botões efeito chifre", "Corte descontraído"]
+    }
+  },
+  {
+    "id": "p07",
+    "slug": "pleated-wool-trousers",
+    "category": "trousers",
+    "shape": "trousers",
+    "price": 135,
+    "compareAtPrice": null,
+    "color": { "hex": "#4A4A4F", "name": { "en": "Charcoal", "pt": "Antracite" } },
+    "sizes": ["44", "46", "48", "50", "52", "54"],
+    "sizeGuide": "trousers",
+    "featured": false,
+    "name": { "en": "Pleated Wool Trousers", "pt": "Calças de Lã com Pinças" },
+    "description": {
+      "en": "Single-pleat trousers in a soft wool flannel, with a tapered leg and side adjusters.",
+      "pt": "Calças com uma pinça em flanela de lã macia, perna afunilada e ajustadores laterais."
+    },
+    "details": {
+      "en": ["98% wool, 2% elastane", "Single pleat", "Side adjusters", "Dry clean only"],
+      "pt": ["98% lã, 2% elastano", "Uma pinça", "Ajustadores laterais", "Apenas limpeza a seco"]
+    }
+  },
+  {
+    "id": "p08",
+    "slug": "cotton-chinos",
+    "category": "trousers",
+    "shape": "trousers",
+    "price": 85,
+    "compareAtPrice": 99,
+    "color": { "hex": "#C8B48E", "name": { "en": "Stone", "pt": "Pedra" } },
+    "sizes": ["44", "46", "48", "50", "52", "54"],
+    "sizeGuide": "trousers",
+    "featured": true,
+    "name": { "en": "Garment-Dyed Chinos", "pt": "Chinos Tingidas em Peça" },
+    "description": {
+      "en": "Everyday chinos in garment-dyed cotton twill for a softly lived-in colour from day one.",
+      "pt": "Chinos do dia a dia em sarja de algodão tingida em peça, com uma cor suave desde o primeiro uso."
+    },
+    "details": {
+      "en": ["98% cotton, 2% elastane", "Garment-dyed", "Slim, tapered fit", "Machine wash at 30 °C"],
+      "pt": ["98% algodão, 2% elastano", "Tingidas em peça", "Corte justo e afunilado", "Lavar à máquina a 30 °C"]
+    }
+  },
+  {
+    "id": "p09",
+    "slug": "unstructured-navy-blazer",
+    "category": "outerwear",
+    "shape": "blazer",
+    "price": 249,
+    "compareAtPrice": null,
+    "color": { "hex": "#1F2A44", "name": { "en": "Navy", "pt": "Azul-marinho" } },
+    "sizes": ["46", "48", "50", "52", "54"],
+    "sizeGuide": "tops",
+    "featured": false,
+    "name": { "en": "Unstructured Navy Blazer", "pt": "Blazer Azul-Marinho Desestruturado" },
+    "description": {
+      "en": "A soft-shouldered, half-lined blazer in hopsack wool. Sharp enough for meetings, easy enough for weekends.",
+      "pt": "Blazer de ombro suave e meio forro em lã hopsack. Elegante para reuniões, descontraído ao fim de semana."
+    },
+    "details": {
+      "en": ["100% wool hopsack", "Half-lined", "Patch pockets", "Dry clean only"],
+      "pt": ["100% lã hopsack", "Meio forro", "Bolsos aplicados", "Apenas limpeza a seco"]
+    }
+  },
+  {
+    "id": "p10",
+    "slug": "waxed-field-jacket",
+    "category": "outerwear",
+    "shape": "jacket",
+    "price": 289,
+    "compareAtPrice": 349,
+    "color": { "hex": "#5B5A3F", "name": { "en": "Olive", "pt": "Azeitona" } },
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "sizeGuide": "tops",
+    "featured": false,
+    "name": { "en": "Waxed Field Jacket", "pt": "Casaco de Campo Encerado" },
+    "description": {
+      "en": "Weatherproof waxed cotton with a corduroy collar and four bellows pockets. Ages beautifully.",
+      "pt": "Algodão encerado resistente ao tempo, com gola em bombazine e quatro bolsos de fole. Envelhece bem."
+    },
+    "details": {
+      "en": ["100% waxed cotton", "Corduroy collar", "Four bellows pockets", "Re-wax yearly"],
+      "pt": ["100% algodão encerado", "Gola em bombazine", "Quatro bolsos de fole", "Voltar a encerar anualmente"]
+    }
+  },
+  {
+    "id": "p11",
+    "slug": "leather-dress-belt",
+    "category": "accessories",
+    "shape": "belt",
+    "price": 55,
+    "compareAtPrice": null,
+    "color": { "hex": "#6B4A35", "name": { "en": "Chestnut", "pt": "Castanho" } },
+    "sizes": ["85", "90", "95", "100", "105"],
+    "sizeGuide": "belts",
+    "featured": false,
+    "name": { "en": "Leather Dress Belt", "pt": "Cinto de Pele Clássico" },
+    "description": {
+      "en": "Full-grain leather with a brushed brass buckle. A 3 cm width that works with suits and denim.",
+      "pt": "Pele de flor integral com fivela em latão escovado. Largura de 3 cm, para fato ou ganga."
+    },
+    "details": {
+      "en": ["Full-grain leather", "Brushed brass buckle", "3 cm width", "Size = waist in cm"],
+      "pt": ["Pele de flor integral", "Fivela em latão escovado", "3 cm de largura", "Tamanho = cintura em cm"]
+    }
+  },
+  {
+    "id": "p12",
+    "slug": "cashmere-blend-scarf",
+    "category": "accessories",
+    "shape": "scarf",
+    "price": 79,
+    "compareAtPrice": 99,
+    "color": { "hex": "#8C2F39", "name": { "en": "Burgundy", "pt": "Bordeaux" } },
+    "sizes": ["ONE"],
+    "sizeGuide": null,
+    "featured": false,
+    "name": { "en": "Cashmere-Blend Scarf", "pt": "Cachecol em Mistura de Caxemira" },
+    "description": {
+      "en": "A generous scarf in a wool and cashmere blend, finished with a fine fringe.",
+      "pt": "Cachecol generoso em mistura de lã e caxemira, com franja fina."
+    },
+    "details": {
+      "en": ["80% wool, 20% cashmere", "180 × 30 cm", "Fringed edges", "Dry clean only"],
+      "pt": ["80% lã, 20% caxemira", "180 × 30 cm", "Rematado com franja", "Apenas limpeza a seco"]
+    }
+  }
+]
