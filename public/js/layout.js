@@ -2,6 +2,8 @@ import { CONFIG } from './config.js';
 import { t, getLang, setLang, LANGS, applyTranslations, formatPrice } from './i18n.js';
 import { cartCount } from './cart.js';
 import { monogramSVG } from './placeholder.js';
+import { getConsent, onConsentChange, showConsentBanner } from './consent.js';
+import { startTracking, stopTracking } from './tracker.js';
 
 const NAV_CATEGORIES = ['shirts', 'knitwear', 'trousers', 'outerwear', 'accessories'];
 
@@ -63,6 +65,8 @@ function footerHTML() {
           <li><span>${t('footer.help.shipping')}</span></li>
           <li><span>${t('footer.help.returns')}</span></li>
           <li><span>${t('footer.help.sizes')}</span></li>
+          <li><a href="/privacy">${t('footer.privacy')}</a></li>
+          <li><button type="button" class="link-btn" data-privacy-settings>${t('footer.privacySettings')}</button></li>
         </ul>
       </div>
     </div>
@@ -117,6 +121,22 @@ export function initLayout({ titleKey, title, active } = {}) {
 
   applyTranslations();
   setTitle(title ?? (titleKey ? t(titleKey) : ''));
+  initPrivacy();
+}
+
+/**
+ * Tracking runs only with explicit consent. Undecided visitors see the banner;
+ * the footer "Privacy settings" button reopens it at any time.
+ */
+function initPrivacy() {
+  onConsentChange((status) => (status === 'granted' ? startTracking() : stopTracking()));
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-privacy-settings]')) showConsentBanner();
+  });
+
+  const status = getConsent();
+  if (status === 'granted') startTracking();
+  else if (status === null) showConsentBanner();
 }
 
 export function setTitle(pageTitle) {
