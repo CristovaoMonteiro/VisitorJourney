@@ -1,0 +1,111 @@
+[
+  {
+    "key": "hero",
+    "unsplashId": "1619857121838-997e82345250",
+    "pageUrl": "https://unsplash.com/photos/ak5R4Y7MkW8",
+    "photographer": "Rufat Mammadov",
+    "profileUrl": "https://unsplash.com/@rufatmammadov",
+    "focus": "60% 70%",
+    "alt": {
+      "en": "A lone man walking across a vast, curved concrete plaza in soft light",
+      "pt": "Um homem sozinho atravessa uma ampla praça de betão curva, em luz suave"
+    }
+  },
+  {
+    "key": "panel-knitwear",
+    "unsplashId": "1713392899774-5f1c261c4a77",
+    "pageUrl": "https://unsplash.com/photos/tMgbJsHjF0Q",
+    "photographer": "Aedrian Salazar",
+    "profileUrl": "https://unsplash.com/@aedrian",
+    "focus": "40% 40%",
+    "alt": {
+      "en": "Man in a textured wool sweater leaning against a pale wall",
+      "pt": "Homem com uma camisola de lã texturada encostado a uma parede clara"
+    }
+  },
+  {
+    "key": "panel-shirts",
+    "unsplashId": "1641753399988-3b49d89d5b2a",
+    "pageUrl": "https://unsplash.com/photos/vZL3FaHvbmE",
+    "photographer": "Sean Boyd",
+    "profileUrl": "https://unsplash.com/@seanfboyd",
+    "focus": "38% 40%",
+    "alt": {
+      "en": "Man in a light overshirt standing by a tall window in natural light",
+      "pt": "Homem com uma sobrecamisa clara junto a uma janela alta, em luz natural"
+    }
+  },
+  {
+    "key": "material-knit",
+    "unsplashId": "1636716016297-a7b3f4b5e3e8",
+    "pageUrl": "https://unsplash.com/photos/3xb9ezcoWWA",
+    "photographer": "engin akyurt",
+    "profileUrl": "https://unsplash.com/@enginakyurt",
+    "focus": "50% 50%",
+    "alt": {
+      "en": "Close-up of a soft grey knitted fabric",
+      "pt": "Grande plano de uma malha cinzenta e macia"
+    }
+  },
+  {
+    "key": "look-window",
+    "unsplashId": "1486002113024-43b2ce358eb0",
+    "pageUrl": "https://unsplash.com/photos/TdM_fhzmWog",
+    "photographer": "Ethan Sykes",
+    "profileUrl": "https://unsplash.com/@e_sykes",
+    "focus": "30% 40%",
+    "alt": {
+      "en": "Man in a pale blue shirt by a window, light falling through the blinds",
+      "pt": "Homem de camisa azul-clara junto a uma janela, com luz a passar pelos estores"
+    }
+  },
+  {
+    "key": "look-shearling",
+    "unsplashId": "1627637454030-5ddd536e06e5",
+    "pageUrl": "https://unsplash.com/photos/2cmLR_I_hn0",
+    "photographer": "Dmitry Spravko",
+    "profileUrl": "https://unsplash.com/@kaprion",
+    "focus": "45% 50%",
+    "alt": {
+      "en": "Man in a brown shearling jacket standing beside a grey stone wall",
+      "pt": "Homem com um casaco de pele de carneiro castanho junto a uma parede de pedra cinzenta"
+    }
+  },
+  {
+    "key": "look-cuff",
+    "unsplashId": "1709146301397-70ce241e718e",
+    "pageUrl": "https://unsplash.com/photos/7pELN4BIpjo",
+    "photographer": "Baran Lotfollahi",
+    "profileUrl": "https://unsplash.com/@baranlotfollahi",
+    "focus": "40% 50%",
+    "alt": {
+      "en": "Detail of a hand fastening the cuff of a white shirt",
+      "pt": "Detalhe de uma mão a apertar o punho de uma camisa branca"
+    }
+  },
+  {
+    "key": "craft-rack",
+    "unsplashId": "1633655442432-620aa55d7ac1",
+    "pageUrl": "https://unsplash.com/photos/iV08-pfH2NQ",
+    "photographer": "Yasamine June",
+    "profileUrl": "https://unsplash.com/@yasamine",
+    "focus": "50% 50%",
+    "crop": { "left": 0.14, "top": 0, "width": 0.86, "height": 1 },
+    "alt": {
+      "en": "Tailored jackets in wool and check hanging on a rail in a workshop",
+      "pt": "Casacos de alfaiataria em lã e xadrez pendurados numa calha de atelier"
+    }
+  },
+  {
+    "key": "advisor",
+    "unsplashId": "1633655442168-c6ef0ed2f984",
+    "pageUrl": "https://unsplash.com/photos/tOubjwKS6f0",
+    "photographer": "Yasamine June",
+    "profileUrl": "https://unsplash.com/@yasamine",
+    "focus": "50% 40%",
+    "alt": {
+      "en": "A camel wool jacket, shirt and tie on a tailor's dummy, with a blank fabric card",
+      "pt": "Casaco de lã camelo, camisa e gravata num manequim de alfaiate, com um cartão de tecido em branco"
+    }
+  }
+]
