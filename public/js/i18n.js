@@ -155,7 +155,37 @@ const STRINGS = {
     'footer.help.returns': 'Returns',
     'footer.help.sizes': 'Size guide',
     'footer.rights': 'Demo project.',
+    'footer.privacy': 'Privacy notice',
+    'footer.privacySettings': 'Privacy settings',
     'lang.label': 'Language',
+
+    'consent.title': 'Your privacy',
+    'consent.text':
+      'With your permission, this demo store measures how visitors move through it using an anonymous ID. No names, emails or IP addresses are stored, and nothing is shared with third parties.',
+    'consent.more': 'Privacy notice',
+    'consent.accept': 'Accept analytics',
+    'consent.decline': 'Decline',
+
+    'privacy.title': 'Privacy notice',
+    'privacy.intro':
+      'This is a fictional store built as a portfolio project. It measures, only with your consent, how visitors move through the pages, so the journey can be shown on an analytics dashboard.',
+    'privacy.collect.title': 'What is collected',
+    'privacy.collect.text':
+      'A random anonymous ID created in your browser, a session ID, the pages you view, how far you scroll, and store interactions such as filters, products viewed, items added to the bag and simulated orders. Also the campaign that brought you here (UTM tags), the domain of the referring site and whether you use a mobile or desktop device.',
+    'privacy.never.title': 'What is never collected',
+    'privacy.never.text':
+      'Your name, email address (the newsletter and appointment forms are simulations and discard what you type), IP address, precise location, full browser fingerprint or full referring URLs. No third-party scripts, cookies or fonts are loaded.',
+    'privacy.basis.title': 'Legal basis and retention',
+    'privacy.basis.text':
+      'Tracking is based on your consent (GDPR art. 6(1)(a)) and starts only after you accept. Raw events are deleted automatically after 13 months.',
+    'privacy.choices.title': 'Your choices',
+    'privacy.choices.text':
+      'You can change your decision at any time. Withdrawing consent stops tracking immediately and deletes the anonymous IDs from this browser. Because the IDs are random and not linked to you, past events cannot be traced back to a person.',
+    'privacy.status': 'Current choice:',
+    'privacy.status.granted': 'analytics accepted',
+    'privacy.status.denied': 'analytics declined',
+    'privacy.status.none': 'not decided yet',
+    'privacy.change': 'Change privacy settings',
   },
 
   pt: {
@@ -310,7 +340,37 @@ const STRINGS = {
     'footer.help.returns': 'Devoluções',
     'footer.help.sizes': 'Guia de tamanhos',
     'footer.rights': 'Projeto de demonstração.',
+    'footer.privacy': 'Aviso de privacidade',
+    'footer.privacySettings': 'Definições de privacidade',
     'lang.label': 'Idioma',
+
+    'consent.title': 'A sua privacidade',
+    'consent.text':
+      'Com a sua autorização, esta loja de demonstração mede como os visitantes a percorrem, usando um ID anónimo. Não são guardados nomes, emails nem endereços IP, e nada é partilhado com terceiros.',
+    'consent.more': 'Aviso de privacidade',
+    'consent.accept': 'Aceitar análise',
+    'consent.decline': 'Recusar',
+
+    'privacy.title': 'Aviso de privacidade',
+    'privacy.intro':
+      'Esta é uma loja fictícia criada como projeto de portfólio. Mede, apenas com o seu consentimento, como os visitantes percorrem as páginas, para que o trajeto possa ser mostrado num dashboard de análise.',
+    'privacy.collect.title': 'O que é recolhido',
+    'privacy.collect.text':
+      'Um ID anónimo aleatório criado no seu browser, um ID de sessão, as páginas que vê, até onde faz scroll e interações na loja como filtros, produtos vistos, artigos adicionados ao saco e encomendas simuladas. Também a campanha que o trouxe (etiquetas UTM), o domínio do site de origem e se usa um dispositivo móvel ou desktop.',
+    'privacy.never.title': 'O que nunca é recolhido',
+    'privacy.never.text':
+      'O seu nome, email (os formulários de newsletter e marcação são simulações e descartam o que escreve), endereço IP, localização precisa, impressão digital completa do browser ou URLs de origem completos. Não são carregados scripts, cookies ou fontes de terceiros.',
+    'privacy.basis.title': 'Base legal e conservação',
+    'privacy.basis.text':
+      'O tracking baseia-se no seu consentimento (RGPD art. 6.º, n.º 1, alínea a) e só começa depois de aceitar. Os eventos são apagados automaticamente ao fim de 13 meses.',
+    'privacy.choices.title': 'As suas escolhas',
+    'privacy.choices.text':
+      'Pode mudar a sua decisão a qualquer momento. Ao retirar o consentimento, o tracking termina de imediato e os IDs anónimos são apagados deste browser. Como os IDs são aleatórios e não estão ligados a si, os eventos anteriores não podem ser associados a uma pessoa.',
+    'privacy.status': 'Escolha atual:',
+    'privacy.status.granted': 'análise aceite',
+    'privacy.status.denied': 'análise recusada',
+    'privacy.status.none': 'ainda não decidiu',
+    'privacy.change': 'Alterar definições de privacidade',
   },
 };
 
