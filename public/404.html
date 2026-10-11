@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page not found</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script type="module">
+      import { initLayout } from '/js/layout.js';
+      initLayout({ titleKey: 'notFound.title' });
+    </script>
+  </head>
+  <body>
+    <header id="site-header" class="site-header"></header>
+    <main id="main" class="container page">
+      <div class="empty-state">
+        <h1 class="page-title" data-i18n="notFound.title"></h1>
+        <p class="muted" data-i18n="notFound.text"></p>
+        <a href="/" class="btn btn--primary" data-i18n="notFound.back"></a>
+      </div>
+    </main>
+    <footer id="site-footer" class="site-footer"></footer>
+  </body>
+</html>
