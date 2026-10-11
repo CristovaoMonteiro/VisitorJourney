@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visitor Journey</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <!-- Apply the saved theme before first paint to avoid a light flash in dark mode. -->
+    <script>
+      try {
+        const theme = localStorage.getItem('orlo_dash_theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <script src="/vendor/chart.umd.js" defer></script>
+    <script type="module" src="/js/dashboard/main.js"></script>
+  </head>
+  <body>
+    <header class="dash-header">
+      <div class="dash-header__brand">
+        <span class="dash-monogram" data-monogram aria-hidden="true"></span>
+        <div>
+          <p class="dash-header__eyebrow" data-brand></p>
+          <h1 class="dash-header__title" data-d="title"></h1>
+        </div>
+      </div>
+      <div class="dash-header__actions">
+        <div class="segmented-control" role="group" data-d-attr="aria-label:theme.label" data-theme-switch>
+          <button type="button" data-theme-option="light" data-d="theme.light"></button>
+          <button type="button" data-theme-option="dark" data-d="theme.dark"></button>
+          <button type="button" data-theme-option="system" data-d="theme.system"></button>
+        </div>
+        <div class="segmented-control" role="group" aria-label="Language" data-lang-switch>
+          <button type="button" data-lang="en">EN</button>
+          <button type="button" data-lang="pt">PT</button>
+        </div>
+        <a href="/" class="dash-link" data-d="viewStore"></a>
+      </div>
+    </header>
+
+    <main class="dash-main" id="main">
+      <p class="dash-subtitle" data-subtitle></p>
+
+      <!-- One filter row scopes everything below it. -->
+      <form class="filter-bar" data-filters aria-label="Filters" novalidate>
+        <label class="field">
+          <span class="field__label" data-d="filters.range"></span>
+          <select name="range">
+            <option value="7" data-d="filters.7"></option>
+            <option value="30" data-d="filters.30"></option>
+            <option value="90" data-d="filters.90"></option>
+            <option value="custom" data-d="filters.custom"></option>
+          </select>
+        </label>
+        <label class="field" data-custom-range hidden>
+          <span class="field__label" data-d="filters.from"></span>
+          <input type="date" name="from" />
+        </label>
+        <label class="field" data-custom-range hidden>
+          <span class="field__label" data-d="filters.to"></span>
+          <input type="date" name="to" />
+        </label>
+        <label class="field">
+          <span class="field__label" data-d="filters.segment"></span>
+          <select name="segment" data-segment-options></select>
+        </label>
+        <label class="field">
+          <span class="field__label" data-d="filters.source"></span>
+          <select name="source" data-source-options></select>
+        </label>
+        <label class="field">
+          <span class="field__label" data-d="filters.device"></span>
+          <select name="device" data-device-options></select>
+        </label>
+        <button type="button" class="dash-btn dash-btn--ghost" data-reset data-d="filters.reset"></button>
+      </form>
+
+      <p class="dash-state" role="status" aria-live="polite" data-state></p>
+
+      <div class="dash-content" data-content>
+        <section class="kpis" aria-label="Key metrics" data-kpis></section>
+
+        <div class="chart-grid">
+          <section class="card card--funnel" aria-labelledby="funnel-title" data-card="funnel">
+            <header class="card__head">
+              <div>
+                <h2 id="funnel-title" class="card__title" data-d="funnel.title"></h2>
+                <p class="card__hint" data-d="funnel.hint"></p>
+              </div>
+              <button type="button" class="dash-btn dash-btn--ghost dash-btn--small" data-toggle-table data-d="table.view"></button>
+            </header>
+            <div class="chart-box chart-box--funnel"><canvas data-chart="funnel" role="img"></canvas></div>
+            <div class="table-box" data-table hidden></div>
+          </section>
+
+          <section class="card" aria-labelledby="segments-title" data-card="segments">
+            <header class="card__head">
+              <div>
+                <h2 id="segments-title" class="card__title" data-d="segments.title"></h2>
+                <p class="card__hint" data-d="segments.hint"></p>
+              </div>
+              <button type="button" class="dash-btn dash-btn--ghost dash-btn--small" data-toggle-table data-d="table.view"></button>
+            </header>
+            <div class="chart-box chart-box--segments"><canvas data-chart="segments" role="img"></canvas></div>
+            <div class="table-box" data-table hidden></div>
+          </section>
+
+          <section class="card card--wide" aria-labelledby="daily-title" data-card="daily">
+            <header class="card__head">
+              <div>
+                <h2 id="daily-title" class="card__title" data-d="daily.title"></h2>
+                <p class="card__hint" data-d="daily.hint"></p>
+              </div>
+              <button type="button" class="dash-btn dash-btn--ghost dash-btn--small" data-toggle-table data-d="table.view"></button>
+            </header>
+            <div class="chart-box chart-box--daily"><canvas data-chart="daily" role="img"></canvas></div>
+            <div class="table-box" data-table hidden></div>
+          </section>
+        </div>
+
+        <section class="card" aria-labelledby="visitors-title">
+          <header class="card__head card__head--wrap">
+            <div>
+              <h2 id="visitors-title" class="card__title" data-d="visitors.title"></h2>
+              <p class="card__hint" data-visitor-count></p>
+            </div>
+            <label class="search">
+              <span class="visually-hidden" data-d="visitors.search"></span>
+              <input type="search" name="q" autocomplete="off" spellcheck="false" data-visitor-search
+                     data-d-attr="placeholder:visitors.search" />
+            </label>
+          </header>
+          <div class="visitor-table-wrap">
+            <table class="visitor-table" data-visitor-table>
+              <thead>
+                <tr>
+                  <th scope="col"><span data-d="visitors.col.id"></span></th>
+                  <th scope="col" data-sort="segment"><button type="button" data-d="visitors.col.segment"></button></th>
+                  <th scope="col" data-sort="score" class="num"><button type="button" data-d="visitors.col.score"></button></th>
+                  <th scope="col" data-sort="sessions" class="num"><button type="button" data-d="visitors.col.sessions"></button></th>
+                  <th scope="col" data-sort="lastActivity"><button type="button" data-d="visitors.col.lastActivity"></button></th>
+                  <th scope="col" data-sort="source"><button type="button" data-d="visitors.col.source"></button></th>
+                  <th scope="col"><span data-d="visitors.col.device"></span></th>
+                </tr>
+              </thead>
+              <tbody data-visitor-rows></tbody>
+            </table>
+          </div>
+          <nav class="pagination" aria-label="Pagination" data-pagination></nav>
+        </section>
+      </div>
+    </main>
+
+    <!-- Visitor journey detail (opened from the table; URL hash #visitor=<id>) -->
+    <div class="drawer-backdrop" data-drawer-backdrop hidden></div>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" data-drawer hidden tabindex="-1">
+      <div class="drawer__inner" data-drawer-content></div>
+    </aside>
+  </body>
+</html>
