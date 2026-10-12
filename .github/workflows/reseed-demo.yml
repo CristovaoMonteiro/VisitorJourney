@@ -1,0 +1,30 @@
+# Keeps the public demo populated: seed dates are relative to the day the seed
+# runs, so re-running it weekly keeps "last 30 days" full. Only seeded visitors
+# are replaced; real demo visitors are kept.
+name: Refresh demo data
+
+on:
+  schedule:
+    - cron: '0 5 * * 1' # Mondays 05:00 UTC
+  workflow_dispatch:
+
+jobs:
+  reseed:
+    runs-on: ubuntu-latest
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+    steps:
+      - name: Skip when the MONGODB_URI secret is not configured
+        if: env.MONGODB_URI == ''
+        run: echo "Add the MONGODB_URI repository secret to enable this workflow."
+      - uses: actions/checkout@v4
+        if: env.MONGODB_URI != ''
+      - uses: actions/setup-node@v4
+        if: env.MONGODB_URI != ''
+        with:
+          node-version: 22
+          cache: npm
+      - if: env.MONGODB_URI != ''
+        run: npm ci --omit=dev
+      - if: env.MONGODB_URI != ''
+        run: npm run seed
