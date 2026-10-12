@@ -1,16 +1,25 @@
 /**
- * Runs the app against a throwaway in-memory MongoDB, so the tracking
- * pipeline can be tried without installing MongoDB or creating an Atlas
- * cluster. Data is lost when the process stops.
+ * Runs the app against a throwaway in-memory MongoDB, so the store, tracking
+ * and dashboard can be tried without installing MongoDB or creating an Atlas
+ * cluster. The demo dataset is seeded on start; data is lost when it stops.
  *
- * Usage: npm run dev:memory
+ * Usage: npm run dev:memory              (seeded with the demo dataset)
+ *        npm run dev:memory -- --no-seed (empty database)
  */
 const { MongoMemoryServer } = require('mongodb-memory-server');
+const { connectDB, disconnectDB } = require('../server/db');
+const { seed } = require('./seed');
 
 async function main() {
   const mongo = await MongoMemoryServer.create();
   process.env.MONGODB_URI = mongo.getUri('visitor-journey-memory');
   console.log('In-memory MongoDB started (data is not persisted)');
+
+  if (!process.argv.includes('--no-seed')) {
+    await connectDB(process.env.MONGODB_URI);
+    await seed();
+    await disconnectDB();
+  }
 
   const stop = async () => {
     await mongo.stop();
