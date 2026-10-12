@@ -9,6 +9,7 @@
     "start": "node server/index.js",
     "dev:memory": "node --watch scripts/dev-memory.js",
     "images": "node scripts/build-images.js",
+    "seed": "node scripts/seed.js",
     "test": "jest"
   },
   "jest": {
