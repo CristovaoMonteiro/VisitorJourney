@@ -1,0 +1,6 @@
+node_modules/
+coverage/
+public/img/
+package-lock.json
+CREDITS.md
+public/js/photos.js
