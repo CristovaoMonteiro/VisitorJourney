@@ -42,7 +42,10 @@ function optionHTML(name, value, label, extra = '', checked = false) {
 }
 
 function formHTML(cart) {
-  const standardPrice = cart.subtotal >= CONFIG.shipping.freeThreshold ? t('cart.shipping.free') : formatPrice(CONFIG.shipping.standard);
+  const standardPrice =
+    cart.subtotal >= CONFIG.shipping.freeThreshold
+      ? t('cart.shipping.free')
+      : formatPrice(CONFIG.shipping.standard);
   return `
     <div class="checkout-layout">
       <form class="checkout-form" data-checkout-form>

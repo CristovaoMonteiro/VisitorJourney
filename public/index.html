@@ -6,7 +6,14 @@
     <title>Store</title>
     <meta name="description" content="Fictional premium menswear store (portfolio demo)." />
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
-    <link rel="preload" as="image" type="image/avif" imagesrcset="/img/photos/hero-640.avif 640w, /img/photos/hero-1280.avif 1280w, /img/photos/hero-1920.avif 1920w" imagesizes="100vw" fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      imagesrcset="/img/photos/hero-640.avif 640w, /img/photos/hero-1280.avif 1280w, /img/photos/hero-1920.avif 1920w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <link rel="stylesheet" href="/css/styles.css" />
     <script type="module" src="/js/pages/home.js"></script>
   </head>
@@ -20,7 +27,12 @@
         <div class="hero__content container">
           <p class="overline overline--light" data-i18n="home.hero.eyebrow"></p>
           <h1 id="hero-title" class="hero__title" data-i18n="home.hero.title"></h1>
-          <a href="/collection" class="text-cta text-cta--light" data-cta="hero_collection" data-i18n="home.hero.cta"></a>
+          <a
+            href="/collection"
+            class="text-cta text-cta--light"
+            data-cta="hero_collection"
+            data-i18n="home.hero.cta"
+          ></a>
         </div>
       </section>
 
@@ -62,7 +74,12 @@
           <p class="overline" data-i18n="home.material.eyebrow"></p>
           <h2 id="material-title" class="material__title" data-i18n="home.material.title"></h2>
           <p class="material__body" data-i18n="home.material.text"></p>
-          <a href="/collection?category=knitwear" class="text-cta" data-cta="material_knitwear" data-i18n="home.material.cta"></a>
+          <a
+            href="/collection?category=knitwear"
+            class="text-cta"
+            data-cta="material_knitwear"
+            data-i18n="home.material.cta"
+          ></a>
         </div>
       </section>
 
@@ -105,8 +122,14 @@
           </ul>
           <form class="inline-form" novalidate data-club-form>
             <label for="club-email" class="visually-hidden" data-i18n="home.club.placeholder"></label>
-            <input id="club-email" type="email" name="email" autocomplete="off" required
-                   data-i18n-attr="placeholder:home.club.placeholder" />
+            <input
+              id="club-email"
+              type="email"
+              name="email"
+              autocomplete="off"
+              required
+              data-i18n-attr="placeholder:home.club.placeholder"
+            />
             <button type="submit" class="btn btn--light" data-i18n="home.club.button"></button>
           </form>
           <p class="form-status" role="status" aria-live="polite" data-club-status></p>
@@ -122,8 +145,16 @@
             <form class="advisor__form" novalidate data-advisor-form>
               <fieldset class="segmented">
                 <legend class="label" data-i18n="home.advisor.format"></legend>
-                <label><input type="radio" name="format" value="store" checked /><span data-i18n="home.advisor.format.store"></span></label>
-                <label><input type="radio" name="format" value="video" /><span data-i18n="home.advisor.format.video"></span></label>
+                <label
+                  ><input type="radio" name="format" value="store" checked /><span
+                    data-i18n="home.advisor.format.store"
+                  ></span
+                ></label>
+                <label
+                  ><input type="radio" name="format" value="video" /><span
+                    data-i18n="home.advisor.format.video"
+                  ></span
+                ></label>
               </fieldset>
               <div class="advisor__selects">
                 <label class="field">
@@ -135,7 +166,12 @@
                   <select name="time" data-advisor-time></select>
                 </label>
               </div>
-              <button type="submit" class="btn btn--secondary btn--block" data-cta="advisor_book" data-i18n="home.advisor.button"></button>
+              <button
+                type="submit"
+                class="btn btn--secondary btn--block"
+                data-cta="advisor_book"
+                data-i18n="home.advisor.button"
+              ></button>
             </form>
             <p class="form-status" role="status" aria-live="polite" data-advisor-status></p>
             <p class="fine-print" data-i18n="home.advisor.note"></p>

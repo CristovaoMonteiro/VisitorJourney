@@ -3,7 +3,8 @@ const { makeEvent } = require('./helpers/makeEvent');
 
 const NOW = new Date('2026-10-11T12:00:00Z');
 const at = (iso) => ({ timestamp: iso });
-const validate = (overrides) => validateEvent(makeEvent({ timestamp: NOW.toISOString(), ...overrides }), { now: NOW });
+const validate = (overrides) =>
+  validateEvent(makeEvent({ timestamp: NOW.toISOString(), ...overrides }), { now: NOW });
 
 describe('validateEvent', () => {
   test('accepts a valid event and converts the timestamp to a Date', () => {
@@ -40,7 +41,9 @@ describe('validateEvent', () => {
   });
 
   test('rejects products that are not in the catalogue', () => {
-    const result = validate({ properties: { productId: 'p99', category: 'shirts', price: 10, onSale: false } });
+    const result = validate({
+      properties: { productId: 'p99', category: 'shirts', price: 10, onSale: false },
+    });
     expect(result.errors[0]).toMatch(/^properties\.productId/);
   });
 
@@ -62,14 +65,22 @@ describe('validateEvent', () => {
   test('accepts a purchase with optional-free strict properties', () => {
     const result = validate({
       type: 'purchase',
-      properties: { orderRef: 'ORL-AB12CD', itemCount: 2, value: 124.95, shipping: 6.95, delivery: 'standard' },
+      properties: {
+        orderRef: 'ORL-AB12CD',
+        itemCount: 2,
+        value: 124.95,
+        shipping: 6.95,
+        delivery: 'standard',
+      },
     });
     expect(result.ok).toBe(true);
   });
 
   test('click_cta href is optional but must be a site path', () => {
     expect(validate({ type: 'click_cta', properties: { cta: 'hero_collection' } }).ok).toBe(true);
-    expect(validate({ type: 'click_cta', properties: { cta: 'hero', href: 'https://evil.example' } }).ok).toBe(false);
+    expect(
+      validate({ type: 'click_cta', properties: { cta: 'hero', href: 'https://evil.example' } }).ok,
+    ).toBe(false);
   });
 
   test('rejects non-object payloads', () => {

@@ -15,7 +15,9 @@ describe('seeded random generator', () => {
   });
 
   test('uuid() produces valid v4-shaped ids', () => {
-    expect(createRandom(1).uuid()).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+    expect(createRandom(1).uuid()).toMatch(
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
+    );
   });
 });
 
@@ -40,7 +42,14 @@ describe('demo dataset', () => {
       counts[v.persona] = (counts[v.persona] ?? 0) + 1;
     });
     expect(dataset.visitors).toHaveLength(300);
-    expect(counts).toEqual({ curious: 90, explorer: 45, comparer: 54, ready_to_buy: 45, deal_hunter: 30, returning: 36 });
+    expect(counts).toEqual({
+      curious: 90,
+      explorer: 45,
+      comparer: 54,
+      ready_to_buy: 45,
+      deal_hunter: 30,
+      returning: 36,
+    });
   });
 
   test('places every event in the 29 days before the anchor day', () => {
@@ -54,7 +63,12 @@ describe('demo dataset', () => {
 
   test('every event passes the public API validation', () => {
     const invalid = dataset.events
-      .map((e) => validateEvent({ ...e, timestamp: e.timestamp.toISOString() }, { now: new Date(e.timestamp.getTime() + 1000) }))
+      .map((e) =>
+        validateEvent(
+          { ...e, timestamp: e.timestamp.toISOString() },
+          { now: new Date(e.timestamp.getTime() + 1000) },
+        ),
+      )
       .filter((r) => !r.ok);
     expect(invalid).toEqual([]);
   });
@@ -72,7 +86,8 @@ describe('demo dataset', () => {
 
   test('the segmentation rules recover most simulated personas', () => {
     const matrix = segmentReport(dataset);
-    const agree = (persona) => (matrix[persona][persona] ?? 0) / Object.values(matrix[persona]).reduce((a, b) => a + b, 0);
+    const agree = (persona) =>
+      (matrix[persona][persona] ?? 0) / Object.values(matrix[persona]).reduce((a, b) => a + b, 0);
     expect(agree('curious')).toBe(1);
     expect(agree('ready_to_buy')).toBe(1);
     expect(agree('comparer')).toBeGreaterThan(0.85);

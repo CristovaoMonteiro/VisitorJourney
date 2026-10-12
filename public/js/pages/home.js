@@ -58,7 +58,11 @@ function advisorDays() {
     if (weekday === 0 || weekday === 6) continue;
     days.push({
       value: date.toISOString().slice(0, 10),
-      label: date.toLocaleDateString(CONFIG.locales[getLang()], { weekday: 'short', day: 'numeric', month: 'short' }),
+      label: date.toLocaleDateString(CONFIG.locales[getLang()], {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+      }),
     });
   }
   return days;
@@ -71,7 +75,9 @@ function bindAdvisor() {
   daySelect.innerHTML = advisorDays()
     .map((d) => `<option value="${d.value}">${d.label}</option>`)
     .join('');
-  form.querySelector('[data-advisor-time]').innerHTML = ADVISOR_HOURS.map((h) => `<option>${h}</option>`).join('');
+  form.querySelector('[data-advisor-time]').innerHTML = ADVISOR_HOURS.map(
+    (h) => `<option>${h}</option>`,
+  ).join('');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -89,7 +95,8 @@ async function init() {
   initLayout({ titleKey: 'home.title' });
   renderPhotos();
   bindEmailForm(document.querySelector('[data-club-form]'), document.querySelector('[data-club-status]'), {
-    onSuccess: () => window.dispatchEvent(new CustomEvent('newsletter:signup', { detail: { source: 'club' } })),
+    onSuccess: () =>
+      window.dispatchEvent(new CustomEvent('newsletter:signup', { detail: { source: 'club' } })),
   });
   bindAdvisor();
 

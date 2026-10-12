@@ -2,7 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Event = require('../models/Event');
-const { buildModel, overview, listVisitors, visitorDetail, dayKey, addDays, SEGMENTS, SORT_KEYS } = require('../dashboard/analytics');
+const {
+  buildModel,
+  overview,
+  listVisitors,
+  visitorDetail,
+  dayKey,
+  addDays,
+  SEGMENTS,
+  SORT_KEYS,
+} = require('../dashboard/analytics');
 
 const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
 const UUID_RE = /^[0-9a-f-]{36}$/i;
@@ -23,7 +32,11 @@ function createDashboardRouter({ cacheMs = 60_000 } = {}) {
     cache.pending ??= Event.find({}, { _id: 0, receivedAt: 0 })
       .lean()
       .then((events) => {
-        cache = { model: buildModel(events, { now: new Date() }), expiresAt: Date.now() + cacheMs, pending: null };
+        cache = {
+          model: buildModel(events, { now: new Date() }),
+          expiresAt: Date.now() + cacheMs,
+          pending: null,
+        };
         return cache.model;
       })
       .catch((err) => {
@@ -34,7 +47,8 @@ function createDashboardRouter({ cacheMs = 60_000 } = {}) {
   }
 
   router.use((req, res, next) => {
-    if (mongoose.connection.readyState !== 1) return res.status(503).json({ error: 'Analytics storage is not available' });
+    if (mongoose.connection.readyState !== 1)
+      return res.status(503).json({ error: 'Analytics storage is not available' });
     res.set('Cache-Control', 'no-store');
     return next();
   });
@@ -45,7 +59,8 @@ function createDashboardRouter({ cacheMs = 60_000 } = {}) {
     const to = DAY_RE.test(query.to ?? '') ? query.to : today;
     const from = DAY_RE.test(query.from ?? '') ? query.from : addDays(to, -29);
     if (from > to) return { error: '`from` must be on or before `to`' };
-    if (addDays(from, MAX_RANGE_DAYS) < to) return { error: `Date range is limited to ${MAX_RANGE_DAYS} days` };
+    if (addDays(from, MAX_RANGE_DAYS) < to)
+      return { error: `Date range is limited to ${MAX_RANGE_DAYS} days` };
 
     const filters = { from, to };
     if (query.segment) {
@@ -110,7 +125,10 @@ function dashboardAuth(password) {
   return (req, res, next) => {
     if (!password) return next();
     const [scheme, encoded] = (req.headers.authorization ?? '').split(' ');
-    const supplied = scheme === 'Basic' && encoded ? Buffer.from(encoded, 'base64').toString().split(':').slice(1).join(':') : null;
+    const supplied =
+      scheme === 'Basic' && encoded
+        ? Buffer.from(encoded, 'base64').toString().split(':').slice(1).join(':')
+        : null;
     if (supplied === password) return next();
     res.set('WWW-Authenticate', 'Basic realm="Dashboard"');
     return res.status(401).send('Authentication required');

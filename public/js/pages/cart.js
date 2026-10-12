@@ -89,7 +89,9 @@ async function init() {
       window.dispatchEvent(new CustomEvent('cart:add', { detail: { product: line.product, size, qty: 1 } }));
     } else if (action === 'decrease') {
       setQty(productId, size, line.qty - 1);
-      window.dispatchEvent(new CustomEvent('cart:remove', { detail: { product: line.product, size, qty: 1 } }));
+      window.dispatchEvent(
+        new CustomEvent('cart:remove', { detail: { product: line.product, size, qty: 1 } }),
+      );
     } else if (action === 'remove') {
       removeItem(productId, size);
       window.dispatchEvent(

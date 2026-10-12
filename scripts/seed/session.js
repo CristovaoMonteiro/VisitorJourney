@@ -9,7 +9,13 @@ const SHIPPING = { standard: 6.95, express: 14.95, freeThreshold: 150 };
 const isOnSale = (p) => p.compareAtPrice != null && p.compareAtPrice > p.price;
 const round2 = (n) => Math.round(n * 100) / 100;
 
-const PAGE_TYPES = { '/': 'home', '/collection': 'collection', '/product': 'product', '/cart': 'cart', '/checkout': 'checkout' };
+const PAGE_TYPES = {
+  '/': 'home',
+  '/collection': 'collection',
+  '/product': 'product',
+  '/cart': 'cart',
+  '/checkout': 'checkout',
+};
 
 class SessionBuilder {
   /**

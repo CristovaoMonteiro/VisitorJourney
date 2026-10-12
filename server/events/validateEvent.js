@@ -30,7 +30,9 @@ const matches = (re, label) => (v) => (typeof v === 'string' && re.test(v) ? nul
 const intBetween = (min, max) => (v) =>
   Number.isInteger(v) && v >= min && v <= max ? null : `must be an integer between ${min} and ${max}`;
 const money = (v) =>
-  typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 100000 ? null : 'must be an amount between 0 and 100000';
+  typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 100000
+    ? null
+    : 'must be an amount between 0 and 100000';
 const bool = (v) => (typeof v === 'boolean' ? null : 'must be a boolean');
 const shortText = (max) => (v) =>
   typeof v === 'string' && v.length > 0 && v.length <= max ? null : `must be a string of 1-${max} characters`;
@@ -48,8 +50,21 @@ const PROPERTY_RULES = {
   view_product: { productId, category, price: money, onSale: bool },
   apply_filter: { filter: oneOf(FILTERS), value: shortText(40) },
   view_size_guide: { productId, category },
-  add_to_cart: { productId, category, price: money, size: matches(SIZE_RE, 'a size code'), qty: intBetween(1, 10), onSale: bool },
-  remove_from_cart: { productId, category, price: money, size: matches(SIZE_RE, 'a size code'), qty: intBetween(1, 10) },
+  add_to_cart: {
+    productId,
+    category,
+    price: money,
+    size: matches(SIZE_RE, 'a size code'),
+    qty: intBetween(1, 10),
+    onSale: bool,
+  },
+  remove_from_cart: {
+    productId,
+    category,
+    price: money,
+    size: matches(SIZE_RE, 'a size code'),
+    qty: intBetween(1, 10),
+  },
   checkout_start: { itemCount: intBetween(1, 100), value: money },
   purchase: {
     orderRef: matches(ORDER_REF_RE, 'an order reference like ORL-AB12CD'),
@@ -66,8 +81,12 @@ const TOP_LEVEL_RULES = {
   visitorId: matches(UUID_RE, 'a UUID v4'),
   sessionId: matches(UUID_RE, 'a UUID v4'),
   type: oneOf(EVENT_TYPES),
-  timestamp: (v) => (typeof v === 'string' && !Number.isNaN(Date.parse(v)) ? null : 'must be an ISO 8601 date string'),
-  page: (v) => (typeof v === 'string' && v.length <= 200 && PATH_RE.test(v) ? null : 'must be a site path without query string'),
+  timestamp: (v) =>
+    typeof v === 'string' && !Number.isNaN(Date.parse(v)) ? null : 'must be an ISO 8601 date string',
+  page: (v) =>
+    typeof v === 'string' && v.length <= 200 && PATH_RE.test(v)
+      ? null
+      : 'must be a site path without query string',
   referrer: nullable(matches(HOSTNAME_RE, 'a lowercase hostname')),
   utm_source: nullable(matches(UTM_RE, 'lowercase [a-z0-9_-.]')),
   utm_medium: nullable(matches(UTM_RE, 'lowercase [a-z0-9_-.]')),

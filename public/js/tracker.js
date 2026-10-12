@@ -236,12 +236,14 @@ const productProps = (product) => ({
 
 /** Maps the store's domain events to tracking events. */
 const DOMAIN_EVENTS = {
-  'product:view': ({ product }) => track('view_product', { ...productProps(product), onSale: isOnSale(product) }),
+  'product:view': ({ product }) =>
+    track('view_product', { ...productProps(product), onSale: isOnSale(product) }),
   'sizeguide:open': ({ product }) =>
     track('view_size_guide', { productId: product.id, category: product.category }),
   'cart:add': ({ product, size, qty }) =>
     track('add_to_cart', { ...productProps(product), size, qty, onSale: isOnSale(product) }),
-  'cart:remove': ({ product, size, qty }) => track('remove_from_cart', { ...productProps(product), size, qty }),
+  'cart:remove': ({ product, size, qty }) =>
+    track('remove_from_cart', { ...productProps(product), size, qty }),
   'filter:apply': ({ filter, value }) => track('apply_filter', { filter, value: String(value).slice(0, 40) }),
   'checkout:start': ({ cart }) =>
     track('checkout_start', {
@@ -299,7 +301,10 @@ function trackCtaClicks() {
     (e) => {
       const el = e.target.closest?.('[data-cta]');
       if (!el) return;
-      const cta = el.dataset.cta.toLowerCase().replace(/[^a-z0-9_]/g, '_').slice(0, 60);
+      const cta = el.dataset.cta
+        .toLowerCase()
+        .replace(/[^a-z0-9_]/g, '_')
+        .slice(0, 60);
       const props = { cta };
       const href = el.getAttribute('href');
       if (href) {
@@ -327,7 +332,9 @@ export function startTracking() {
   landing.utm = readUtm();
   landing.referrer = externalReferrer();
 
-  Object.entries(DOMAIN_EVENTS).forEach(([name, handler]) => listen(window, name, (e) => handler(e.detail ?? {})));
+  Object.entries(DOMAIN_EVENTS).forEach(([name, handler]) =>
+    listen(window, name, (e) => handler(e.detail ?? {})),
+  );
   trackScrollDepth();
   trackCtaClicks();
   listen(document, 'visibilitychange', () => {

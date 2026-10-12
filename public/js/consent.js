@@ -10,7 +10,8 @@ const listeners = new Set();
 export function getConsent() {
   try {
     const saved = JSON.parse(localStorage.getItem(CONSENT_KEY));
-    if (saved?.version === CONSENT_VERSION && ['granted', 'denied'].includes(saved.status)) return saved.status;
+    if (saved?.version === CONSENT_VERSION && ['granted', 'denied'].includes(saved.status))
+      return saved.status;
   } catch {
     // Unreadable or blocked storage counts as "not decided".
   }
@@ -20,7 +21,10 @@ export function getConsent() {
 /** @param {'granted' | 'denied'} status */
 export function setConsent(status) {
   try {
-    localStorage.setItem(CONSENT_KEY, JSON.stringify({ status, version: CONSENT_VERSION, at: new Date().toISOString() }));
+    localStorage.setItem(
+      CONSENT_KEY,
+      JSON.stringify({ status, version: CONSENT_VERSION, at: new Date().toISOString() }),
+    );
   } catch {
     // Without storage the choice only lasts for this page.
   }

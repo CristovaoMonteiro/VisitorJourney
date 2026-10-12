@@ -66,7 +66,8 @@ const STRINGS = {
     'home.advisor.success': 'Appointment simulated: {format}, {day} at {time}.',
 
     'collection.title': 'Collection',
-    'collection.intro': 'Every piece, from the shirt you reach for daily to the jacket you keep for a decade.',
+    'collection.intro':
+      'Every piece, from the shirt you reach for daily to the jacket you keep for a decade.',
     'collection.filters': 'Filters',
     'collection.category': 'Category',
     'collection.price': 'Price',
@@ -228,7 +229,8 @@ const STRINGS = {
     'home.lookbook.4': '04 · No atelier',
     'home.club.eyebrow': 'Membros',
     'home.club.title': 'O Círculo {brand}',
-    'home.club.text': 'Uma forma mais tranquila de comprar: acesso antecipado, cuidado e alguns privilégios para quem volta.',
+    'home.club.text':
+      'Uma forma mais tranquila de comprar: acesso antecipado, cuidado e alguns privilégios para quem volta.',
     'home.club.benefit.1': 'Acesso antecipado a cada nova coleção',
     'home.club.benefit.2': 'Ajustes de alfaiataria gratuitos',
     'home.club.benefit.3': 'Saldos privados de estação',
@@ -316,8 +318,7 @@ const STRINGS = {
     'cart.checkout': 'Finalizar compra',
 
     'checkout.title': 'Finalizar compra',
-    'checkout.demo':
-      'Este checkout é simulado. Não são pedidos dados pessoais e nenhum pagamento é cobrado.',
+    'checkout.demo': 'Este checkout é simulado. Não são pedidos dados pessoais e nenhum pagamento é cobrado.',
     'checkout.delivery': 'Método de entrega',
     'checkout.delivery.standard': 'Normal (2–4 dias úteis)',
     'checkout.delivery.express': 'Expresso (dia útil seguinte)',

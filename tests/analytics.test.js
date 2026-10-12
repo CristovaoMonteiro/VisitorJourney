@@ -1,4 +1,10 @@
-const { buildModel, overview, listVisitors, visitorDetail, startOfDay } = require('../server/dashboard/analytics');
+const {
+  buildModel,
+  overview,
+  listVisitors,
+  visitorDetail,
+  startOfDay,
+} = require('../server/dashboard/analytics');
 
 const NOW = new Date('2026-10-11T12:00:00Z');
 let seq = 0;
@@ -27,11 +33,28 @@ const product = { productId: 'p01', category: 'shirts', price: 79, onSale: false
 
 // v1: buyer from the newsletter (mobile); v2: browser (direct); v3: curious, outside the range.
 const events = [
-  ev('v1', 's1', 'page_view', '2026-10-10T10:00:00Z', { utm_source: 'newsletter', utm_medium: 'email', device: 'mobile' }),
-  ev('v1', 's1', 'view_product', '2026-10-10T10:01:00Z', { properties: product, utm_source: 'newsletter', device: 'mobile' }),
-  ev('v1', 's1', 'add_to_cart', '2026-10-10T10:02:00Z', { properties: { ...product, size: 'M', qty: 1 }, device: 'mobile' }),
-  ev('v1', 's1', 'checkout_start', '2026-10-10T10:03:00Z', { properties: { itemCount: 1, value: 85.95 }, device: 'mobile' }),
-  ev('v1', 's1', 'purchase', '2026-10-10T10:04:00Z', { properties: { orderRef: 'ORL-AAAA', itemCount: 1, value: 85.95, shipping: 6.95, delivery: 'standard' }, device: 'mobile' }),
+  ev('v1', 's1', 'page_view', '2026-10-10T10:00:00Z', {
+    utm_source: 'newsletter',
+    utm_medium: 'email',
+    device: 'mobile',
+  }),
+  ev('v1', 's1', 'view_product', '2026-10-10T10:01:00Z', {
+    properties: product,
+    utm_source: 'newsletter',
+    device: 'mobile',
+  }),
+  ev('v1', 's1', 'add_to_cart', '2026-10-10T10:02:00Z', {
+    properties: { ...product, size: 'M', qty: 1 },
+    device: 'mobile',
+  }),
+  ev('v1', 's1', 'checkout_start', '2026-10-10T10:03:00Z', {
+    properties: { itemCount: 1, value: 85.95 },
+    device: 'mobile',
+  }),
+  ev('v1', 's1', 'purchase', '2026-10-10T10:04:00Z', {
+    properties: { orderRef: 'ORL-AAAA', itemCount: 1, value: 85.95, shipping: 6.95, delivery: 'standard' },
+    device: 'mobile',
+  }),
   ev('v2', 's2', 'page_view', '2026-10-09T15:00:00Z'),
   ev('v2', 's2', 'view_product', '2026-10-09T15:01:00Z', { properties: product }),
   ev('v2', 's3', 'page_view', '2026-10-11T09:00:00Z'),
@@ -65,7 +88,7 @@ describe('dashboard analytics', () => {
     expect(overview(model, { ...range, source: 'direct' }).kpis.sessions).toBe(2);
   });
 
-  test('the segment filter uses each visitor\'s primary segment', () => {
+  test("the segment filter uses each visitor's primary segment", () => {
     const buyers = overview(model, { ...range, segment: 'ready_to_buy' });
     expect(buyers.kpis.visitors).toBe(1);
     const counts = Object.fromEntries(overview(model, range).segments.map((s) => [s.segment, s.visitors]));
@@ -74,7 +97,10 @@ describe('dashboard analytics', () => {
   });
 
   test('source options are listed even when a source filter is active', () => {
-    expect(overview(model, { ...range, source: 'newsletter' }).options.sources.sort()).toEqual(['direct', 'newsletter']);
+    expect(overview(model, { ...range, source: 'newsletter' }).options.sources.sort()).toEqual([
+      'direct',
+      'newsletter',
+    ]);
   });
 
   test('daily series covers every day of the range in the store time zone', () => {

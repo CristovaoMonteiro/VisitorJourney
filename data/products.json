@@ -164,7 +164,12 @@
     },
     "details": {
       "en": ["98% cotton, 2% elastane", "Garment-dyed", "Slim, tapered fit", "Machine wash at 30 °C"],
-      "pt": ["98% algodão, 2% elastano", "Tingidas em peça", "Corte justo e afunilado", "Lavar à máquina a 30 °C"]
+      "pt": [
+        "98% algodão, 2% elastano",
+        "Tingidas em peça",
+        "Corte justo e afunilado",
+        "Lavar à máquina a 30 °C"
+      ]
     }
   },
   {
@@ -206,7 +211,12 @@
     },
     "details": {
       "en": ["100% waxed cotton", "Corduroy collar", "Four bellows pockets", "Re-wax yearly"],
-      "pt": ["100% algodão encerado", "Gola em bombazine", "Quatro bolsos de fole", "Voltar a encerar anualmente"]
+      "pt": [
+        "100% algodão encerado",
+        "Gola em bombazine",
+        "Quatro bolsos de fole",
+        "Voltar a encerar anualmente"
+      ]
     }
   },
   {
@@ -227,7 +237,12 @@
     },
     "details": {
       "en": ["Full-grain leather", "Brushed brass buckle", "3 cm width", "Size = waist in cm"],
-      "pt": ["Pele de flor integral", "Fivela em latão escovado", "3 cm de largura", "Tamanho = cintura em cm"]
+      "pt": [
+        "Pele de flor integral",
+        "Fivela em latão escovado",
+        "3 cm de largura",
+        "Tamanho = cintura em cm"
+      ]
     }
   },
   {
