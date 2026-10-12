@@ -58,7 +58,10 @@ export function openSizeGuide(type) {
   const el = ensureDialog();
   const head = guide.columns.map((c) => `<th scope="col">${c.includes('.') ? t(c) : c}</th>`).join('');
   const body = guide.rows
-    .map((r) => `<tr>${r.map((cell, i) => (i === 0 ? `<th scope="row">${cell}</th>` : `<td>${cell}</td>`)).join('')}</tr>`)
+    .map(
+      (r) =>
+        `<tr>${r.map((cell, i) => (i === 0 ? `<th scope="row">${cell}</th>` : `<td>${cell}</td>`)).join('')}</tr>`,
+    )
     .join('');
 
   el.innerHTML = `

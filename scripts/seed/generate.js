@@ -22,8 +22,24 @@ const HOUR_MS = 60 * 60 * 1000;
 
 // Share of sessions starting at each local hour (Lisbon): lunch and evening peaks.
 const HOUR_WEIGHTS = {
-  0: 1, 7: 1, 8: 2, 9: 3, 10: 3, 11: 3, 12: 5, 13: 6, 14: 4, 15: 3,
-  16: 3, 17: 3, 18: 4, 19: 6, 20: 7, 21: 7, 22: 5, 23: 2,
+  0: 1,
+  7: 1,
+  8: 2,
+  9: 3,
+  10: 3,
+  11: 3,
+  12: 5,
+  13: 6,
+  14: 4,
+  15: 3,
+  16: 3,
+  17: 3,
+  18: 4,
+  19: 6,
+  20: 7,
+  21: 7,
+  22: 5,
+  23: 2,
 };
 // Weekends are a little busier for fashion e-commerce (0 = Sunday).
 const WEEKDAY_WEIGHTS = [1.2, 0.9, 1, 1, 1, 1.05, 1.15];
@@ -33,7 +49,12 @@ function brandCode() {
   try {
     const source = fs.readFileSync(path.join(__dirname, '../../public/js/config.js'), 'utf8');
     const name = source.match(/name:\s*'([^']+)'/)?.[1] ?? 'Orlo';
-    return name.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase() || 'ORL';
+    return (
+      name
+        .replace(/[^A-Za-z]/g, '')
+        .slice(0, 3)
+        .toUpperCase() || 'ORL'
+    );
   } catch {
     return 'ORL';
   }
@@ -87,7 +108,11 @@ function sessionStart(rng, anchorDay, daysAgo) {
  *   anchorDay: YYYY-MM-DD in the store time zone; data covers the 29 days before it.
  * @returns {{ events: object[], visitors: { id: string, persona: string }[], anchorDay: string }}
  */
-function generateDataset({ seed = DEFAULT_SEED, visitors = DEFAULT_VISITORS, anchorDay = dayKey(Date.now()) } = {}) {
+function generateDataset({
+  seed = DEFAULT_SEED,
+  visitors = DEFAULT_VISITORS,
+  anchorDay = dayKey(Date.now()),
+} = {}) {
   const rng = createRandom(seed);
   const code = brandCode();
   const events = [];
@@ -119,13 +144,26 @@ function generateDataset({ seed = DEFAULT_SEED, visitors = DEFAULT_VISITORS, anc
     let previousEnd = -Infinity;
     plans.forEach((plan, sessionIndex) => {
       const sourceKey =
-        sessionIndex === 0 ? baseSource : plan.source ? rng.pick(plan.source) : rng.chance(0.6) ? baseSource : 'direct';
+        sessionIndex === 0
+          ? baseSource
+          : plan.source
+            ? rng.pick(plan.source)
+            : rng.chance(0.6)
+              ? baseSource
+              : 'direct';
       let start = sessionStart(rng, anchorDay, days[sessionIndex]);
       // Two sessions on the same day must be separated by more than the 30-minute timeout.
       // The short gap keeps even a late-evening pair from spilling far into the anchor day.
       if (start <= previousEnd + 31 * 60 * 1000) start = previousEnd + rng.int(40, 90) * 60 * 1000;
 
-      const session = new SessionBuilder({ rng, visitorId, start, source: SOURCES[sourceKey], device, out: events });
+      const session = new SessionBuilder({
+        rng,
+        visitorId,
+        start,
+        source: SOURCES[sourceKey],
+        device,
+        out: events,
+      });
       session.brandCode = code;
       persona.journey(session, rng, { plan, sessionIndex, memory });
       previousEnd = session.end();

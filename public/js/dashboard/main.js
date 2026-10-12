@@ -104,14 +104,22 @@ function writeURL() {
   }
   if (state.page > 1) params.set('page', String(state.page));
   const query = params.toString();
-  history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`);
+  history.replaceState(
+    null,
+    '',
+    `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`,
+  );
 }
 
 // ---------------------------------------------------------------------------
 // Rendering
 // ---------------------------------------------------------------------------
 function renderFilters() {
-  const options = overviewData?.options ?? { sources: [], segments: SEGMENTS, devices: ['desktop', 'mobile'] };
+  const options = overviewData?.options ?? {
+    sources: [],
+    segments: SEGMENTS,
+    devices: ['desktop', 'mobile'],
+  };
   const opt = (value, label, selected) =>
     `<option value="${escapeHTML(value)}" ${selected ? 'selected' : ''}>${escapeHTML(label)}</option>`;
 
@@ -119,7 +127,10 @@ function renderFilters() {
     .concat(options.segments.map((s) => opt(s, segmentLabel(s), s === state.segment)))
     .join('');
   // Keep a selected source visible even if it has no sessions in the new range.
-  const sources = state.source && !options.sources.includes(state.source) ? [state.source, ...options.sources] : options.sources;
+  const sources =
+    state.source && !options.sources.includes(state.source)
+      ? [state.source, ...options.sources]
+      : options.sources;
   $('[data-source-options]').innerHTML = [opt('', d('filters.all'), !state.source)]
     .concat(sources.map((s) => opt(s, sourceLabel(s), s === state.source)))
     .join('');
@@ -182,7 +193,12 @@ function renderCharts() {
   renderFunnel($('[data-chart="funnel"]'), funnel, lc);
   $('[data-card="funnel"] [data-table]').innerHTML = tableHTML(
     [d('col.step'), d('col.sessions'), d('col.ofVisits'), d('col.stepRate')],
-    funnel.map((s, i) => [d(`funnel.${s.key}`), num(s.sessions), pct(s.ofFirst), i ? pct(s.ofPrevious) : '–']),
+    funnel.map((s, i) => [
+      d(`funnel.${s.key}`),
+      num(s.sessions),
+      pct(s.ofFirst),
+      i ? pct(s.ofPrevious) : '–',
+    ]),
   );
 
   renderSegments($('[data-chart="segments"]'), segments, lc, (segment) => {
@@ -208,7 +224,8 @@ function renderVisitors() {
   $('[data-visitor-count]').textContent = d('visitors.count', { n: num(total) });
 
   document.querySelectorAll('[data-visitor-table] th[data-sort]').forEach((th) => {
-    if (th.dataset.sort === state.sort) th.setAttribute('aria-sort', state.order === 'asc' ? 'ascending' : 'descending');
+    if (th.dataset.sort === state.sort)
+      th.setAttribute('aria-sort', state.order === 'asc' ? 'ascending' : 'descending');
     else th.removeAttribute('aria-sort');
   });
 
@@ -245,7 +262,9 @@ function renderAll() {
   applyDashboardTranslations();
   document.documentElement.lang = getLang();
   $('[data-subtitle]').textContent = d('subtitle');
-  document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === getLang())));
+  document
+    .querySelectorAll('[data-lang]')
+    .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === getLang())));
   renderFilters();
   if (!overviewData || !visitorsData) return;
   renderKPIs();
@@ -311,7 +330,9 @@ function applyTheme(choice) {
   } catch {
     // Not persisted; still applied for this visit.
   }
-  document.querySelectorAll('[data-theme-option]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.themeOption === choice)));
+  document
+    .querySelectorAll('[data-theme-option]')
+    .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.themeOption === choice)));
   if (overviewData) renderCharts(); // charts read colours from CSS at draw time
 }
 
@@ -336,7 +357,16 @@ function bind() {
   });
 
   $('[data-reset]').addEventListener('click', () => {
-    Object.assign(state, { range: '30', from: '', to: '', segment: '', source: '', device: '', page: 1, q: '' });
+    Object.assign(state, {
+      range: '30',
+      from: '',
+      to: '',
+      segment: '',
+      source: '',
+      device: '',
+      page: 1,
+      q: '',
+    });
     $('[data-visitor-search]').value = '';
     refresh();
   });
@@ -385,7 +415,9 @@ function bind() {
     }),
   );
 
-  document.querySelectorAll('[data-theme-option]').forEach((b) => b.addEventListener('click', () => applyTheme(b.dataset.themeOption)));
+  document
+    .querySelectorAll('[data-theme-option]')
+    .forEach((b) => b.addEventListener('click', () => applyTheme(b.dataset.themeOption)));
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     if (currentThemeChoice() === 'system' && overviewData) renderCharts();
   });
@@ -429,7 +461,9 @@ async function init() {
   applyTheme(currentThemeChoice());
   renderAll();
 
-  getJSON('/api/products').then(setProducts).catch(() => {});
+  getJSON('/api/products')
+    .then(setProducts)
+    .catch(() => {});
   // Chart.js loads with `defer`; wait for it before the first draw.
   if (!window.Chart) await new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
   await refresh();

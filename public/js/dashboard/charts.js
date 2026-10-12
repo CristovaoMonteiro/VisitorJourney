@@ -87,7 +87,8 @@ function draw(key, canvas, config) {
   charts.set(key, new window.Chart(canvas, config));
 }
 
-const pct = (n, lang) => new Intl.NumberFormat(lang, { style: 'percent', maximumFractionDigits: 1 }).format(n);
+const pct = (n, lang) =>
+  new Intl.NumberFormat(lang, { style: 'percent', maximumFractionDigits: 1 }).format(n);
 const num = (n, lang) => new Intl.NumberFormat(lang).format(n);
 
 function horizontalScales(t) {
@@ -111,7 +112,9 @@ export function renderFunnel(canvas, funnel, locale) {
   const colors = funnel.map((_, i) => css(`--funnel-${i + 1}`));
   canvas.setAttribute(
     'aria-label',
-    funnel.map((s) => `${d(`funnel.${s.key}`)}: ${num(s.sessions, locale)} (${pct(s.ofFirst, locale)})`).join(', '),
+    funnel
+      .map((s) => `${d(`funnel.${s.key}`)}: ${num(s.sessions, locale)} (${pct(s.ofFirst, locale)})`)
+      .join(', '),
   );
   draw('funnel', canvas, {
     type: 'bar',
@@ -140,7 +143,10 @@ export function renderFunnel(canvas, funnel, locale) {
           callbacks: {
             label: (item) => {
               const step = funnel[item.dataIndex];
-              const lines = [`${d('col.sessions')}: ${num(step.sessions, locale)}`, d('funnel.ofVisits', { pct: pct(step.ofFirst, locale) })];
+              const lines = [
+                `${d('col.sessions')}: ${num(step.sessions, locale)}`,
+                d('funnel.ofVisits', { pct: pct(step.ofFirst, locale) }),
+              ];
               if (item.dataIndex > 0) lines.push(d('funnel.stepRate', { pct: pct(step.ofPrevious, locale) }));
               return lines;
             },
@@ -160,7 +166,10 @@ export function renderFunnel(canvas, funnel, locale) {
 export function renderSegments(canvas, segments, locale, onSelect) {
   const t = theme();
   const total = segments.reduce((sum, s) => sum + s.visitors, 0);
-  canvas.setAttribute('aria-label', segments.map((s) => `${segmentLabel(s.segment)}: ${s.visitors}`).join(', '));
+  canvas.setAttribute(
+    'aria-label',
+    segments.map((s) => `${segmentLabel(s.segment)}: ${s.visitors}`).join(', '),
+  );
   draw('segments', canvas, {
     type: 'bar',
     data: {
@@ -192,13 +201,15 @@ export function renderSegments(canvas, segments, locale, onSelect) {
         tooltip: {
           ...baseOptions(t).plugins.tooltip,
           callbacks: {
-            label: (item) => `${num(item.raw, locale)} ${d('col.visitors').toLowerCase()} · ${pct(total ? item.raw / total : 0, locale)}`,
+            label: (item) =>
+              `${num(item.raw, locale)} ${d('col.visitors').toLowerCase()} · ${pct(total ? item.raw / total : 0, locale)}`,
           },
         },
         endLabels: {
           font: t.sans,
           color: t.ink2,
-          format: (i) => `${num(segments[i].visitors, locale)} · ${pct(total ? segments[i].visitors / total : 0, locale)}`,
+          format: (i) =>
+            `${num(segments[i].visitors, locale)} · ${pct(total ? segments[i].visitors / total : 0, locale)}`,
         },
       },
     },
@@ -210,8 +221,15 @@ export function renderDaily(canvas, daily, locale) {
   const t = theme();
   const color = css('--line-series');
   const dayLabel = (date) =>
-    new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, { day: 'numeric', month: 'short', timeZone: 'UTC' });
-  canvas.setAttribute('aria-label', `${d('daily.title')}: ${daily.map((p) => `${p.date} ${p.sessions}`).join(', ')}`);
+    new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'short',
+      timeZone: 'UTC',
+    });
+  canvas.setAttribute(
+    'aria-label',
+    `${d('daily.title')}: ${daily.map((p) => `${p.date} ${p.sessions}`).join(', ')}`,
+  );
   draw('daily', canvas, {
     type: 'line',
     data: {

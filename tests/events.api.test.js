@@ -31,7 +31,9 @@ const post = (body) => request(app).post('/api/events').send(body);
 
 describe('POST /api/events', () => {
   test('stores a valid batch and adds the server receive time', async () => {
-    const res = await post({ events: [makeEvent(), makeEvent({ type: 'page_view', properties: { pageType: 'product' } })] });
+    const res = await post({
+      events: [makeEvent(), makeEvent({ type: 'page_view', properties: { pageType: 'product' } })],
+    });
     expect(res.status).toBe(202);
     expect(res.body).toEqual({ accepted: 2, duplicates: 0 });
 
@@ -46,8 +48,20 @@ describe('POST /api/events', () => {
     const fields = Object.keys(stored).sort();
     expect(fields).toEqual(
       [
-        '_id', 'device', 'eventId', 'page', 'properties', 'receivedAt', 'referrer', 'sessionId',
-        'timestamp', 'type', 'utm_campaign', 'utm_medium', 'utm_source', 'visitorId',
+        '_id',
+        'device',
+        'eventId',
+        'page',
+        'properties',
+        'receivedAt',
+        'referrer',
+        'sessionId',
+        'timestamp',
+        'type',
+        'utm_campaign',
+        'utm_medium',
+        'utm_source',
+        'visitorId',
       ].sort(),
     );
   });
@@ -75,7 +89,10 @@ describe('POST /api/events', () => {
   });
 
   test('returns 400 for malformed JSON', async () => {
-    const res = await request(app).post('/api/events').set('Content-Type', 'application/json').send('{"events": [');
+    const res = await request(app)
+      .post('/api/events')
+      .set('Content-Type', 'application/json')
+      .send('{"events": [');
     expect(res.status).toBe(400);
   });
 

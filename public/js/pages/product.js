@@ -38,7 +38,9 @@ function sizeOptionsHTML(product) {
 
 function productHTML(product) {
   const name = localized(product.name);
-  const details = localized(product.details).map((d) => `<li>${escapeHTML(d)}</li>`).join('');
+  const details = localized(product.details)
+    .map((d) => `<li>${escapeHTML(d)}</li>`)
+    .join('');
   const delivery = t('product.delivery.text', {
     standard: formatPrice(CONFIG.shipping.standard),
     free: formatPrice(CONFIG.shipping.freeThreshold),

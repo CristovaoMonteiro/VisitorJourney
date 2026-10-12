@@ -10,7 +10,6 @@
 const { segmentVisitor } = require('../segmentation/segmentation');
 const segmentationConfig = require('../segmentation/segmentation.config');
 
-const DAY_MS = 24 * 60 * 60 * 1000;
 const TIME_ZONE = segmentationConfig.timeZone;
 const SEGMENTS = [...segmentationConfig.priority, segmentationConfig.fallback];
 
@@ -153,7 +152,8 @@ function filterSessions(model, filters, { ignore = [] } = {}) {
     if (s.start < start || s.start >= end) return false;
     if (use('device') && s.device !== filters.device) return false;
     if (use('source') && s.source !== filters.source) return false;
-    if (use('segment') && model.visitors.get(s.visitorId)?.segmentation.segment !== filters.segment) return false;
+    if (use('segment') && model.visitors.get(s.visitorId)?.segmentation.segment !== filters.segment)
+      return false;
     return true;
   });
 }
@@ -242,7 +242,11 @@ const SORT_KEYS = Object.keys(SORTERS);
  * Paginated visitor list for the filtered sessions.
  * @param {{ sort?: string, order?: 'asc'|'desc', page?: number, pageSize?: number, q?: string }} [options]
  */
-function listVisitors(model, filters, { sort = 'lastActivity', order = 'desc', page = 1, pageSize = 25, q = '' } = {}) {
+function listVisitors(
+  model,
+  filters,
+  { sort = 'lastActivity', order = 'desc', page = 1, pageSize = 25, q = '' } = {},
+) {
   const byVisitor = new Map();
   filterSessions(model, filters).forEach((s) => {
     if (!byVisitor.has(s.visitorId)) byVisitor.set(s.visitorId, []);

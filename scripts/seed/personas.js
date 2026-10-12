@@ -16,8 +16,14 @@ const SOURCES = {
   instagram_ads: { utm: { source: 'instagram', medium: 'paid_social', campaign: 'aw26-quiet-season' } },
   facebook_retargeting: { utm: { source: 'facebook', medium: 'paid_social', campaign: 'aw26-retargeting' } },
   google_ads: { utm: { source: 'google', medium: 'cpc', campaign: 'brand-search' } },
-  newsletter: { utm: { source: 'newsletter', medium: 'email', campaign: 'autumn-edit' }, sendDaysAgo: [26, 19, 12, 5] },
-  newsletter_sale: { utm: { source: 'newsletter', medium: 'email', campaign: 'autumn-sale' }, sendDaysAgo: [12, 5] },
+  newsletter: {
+    utm: { source: 'newsletter', medium: 'email', campaign: 'autumn-edit' },
+    sendDaysAgo: [26, 19, 12, 5],
+  },
+  newsletter_sale: {
+    utm: { source: 'newsletter', medium: 'email', campaign: 'autumn-sale' },
+    sendDaysAgo: [12, 5],
+  },
   instagram_sale: { utm: { source: 'instagram', medium: 'paid_social', campaign: 'mid-season-sale' } },
 };
 
@@ -32,7 +38,12 @@ function land(s, rng, { allowProduct = true } = {}) {
   if (allowProduct && paid && roll < 0.35) {
     s.visit('/product');
     const product = rng.pick(products);
-    s.emit('view_product', { productId: product.id, category: product.category, price: product.price, onSale: isOnSale(product) });
+    s.emit('view_product', {
+      productId: product.id,
+      category: product.category,
+      price: product.price,
+      onSale: isOnSale(product),
+    });
     return product;
   }
   if (paid && roll < 0.7) return s.visit('/collection') && null;
@@ -82,7 +93,14 @@ const PERSONAS = {
       const filters = rng.int(1, 3);
       for (let i = 0; i < filters; i += 1) {
         const filter = rng.pick(['category', 'price', 'sort']);
-        s.filter(filter, { category: rng.pick(['shirts', 'knitwear', 'trousers', 'outerwear']), price: rng.pick(['75-150', '150-plus']), sort: 'price-asc' }[filter]);
+        s.filter(
+          filter,
+          {
+            category: rng.pick(['shirts', 'knitwear', 'trousers', 'outerwear']),
+            price: rng.pick(['75-150', '150-plus']),
+            sort: 'price-asc',
+          }[filter],
+        );
       }
       const seen = rng.sample(products, rng.int(sessionIndex === 0 ? 3 : 2, 6));
       seen.forEach((p) => s.viewProduct(p));
@@ -96,8 +114,21 @@ const PERSONAS = {
   ready_to_buy: {
     weight: 0.15,
     mobile: 0.55,
-    sources: { direct: 3, organic: 2, google_ads: 3, instagram_ads: 2, facebook_retargeting: 2, newsletter: 2 },
-    sessions: (rng) => (rng.chance(0.4) ? [{ browseOnly: true }, { gapDays: [0, 4], source: ['direct', 'facebook_retargeting', 'newsletter'] }] : [{}]),
+    sources: {
+      direct: 3,
+      organic: 2,
+      google_ads: 3,
+      instagram_ads: 2,
+      facebook_retargeting: 2,
+      newsletter: 2,
+    },
+    sessions: (rng) =>
+      rng.chance(0.4)
+        ? [
+            { browseOnly: true },
+            { gapDays: [0, 4], source: ['direct', 'facebook_retargeting', 'newsletter'] },
+          ]
+        : [{}],
     journey(s, rng, { plan, memory }) {
       const landed = land(s, rng);
       s.goToCollection();

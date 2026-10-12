@@ -130,7 +130,12 @@ const RULES = {
     if (!matches) return null;
     return [
       { code: 'promo_entry', ...s.promoEntry },
-      { code: 'sale_share', pct: Math.round(s.saleShare * 100), n: s.saleProductViews, total: s.productViews },
+      {
+        code: 'sale_share',
+        pct: Math.round(s.saleShare * 100),
+        n: s.saleProductViews,
+        total: s.productViews,
+      },
     ];
   },
 
@@ -160,7 +165,11 @@ const RULES = {
       s.longestSessionSeconds < c.maxSessionSeconds &&
       s.interactions <= c.maxInteractions;
     if (!matches) return null;
-    return [{ code: 'single_page' }, { code: 'short_visit', seconds: s.longestSessionSeconds }, { code: 'no_interaction' }];
+    return [
+      { code: 'single_page' },
+      { code: 'short_visit', seconds: s.longestSessionSeconds },
+      { code: 'no_interaction' },
+    ];
   },
 };
 
@@ -177,10 +186,7 @@ function classify(signals, { config = DEFAULT_CONFIG } = {}) {
     return {
       segment: config.fallback,
       tags: [],
-      reasons: [
-        { code: 'viewed_pages', n: signals.pageViews },
-        { code: 'no_clear_pattern' },
-      ],
+      reasons: [{ code: 'viewed_pages', n: signals.pageViews }, { code: 'no_clear_pattern' }],
     };
   }
   const [primary, ...others] = matched;
@@ -254,7 +260,8 @@ const REASON_TEXT = {
     viewed_products: ({ n }) => `viu ${n} ${plural(n, 'produto', 'produtos')}`,
     used_filters: ({ n }) => `usou filtros ${n} ${plural(n, 'vez', 'vezes')}`,
     opened_size_guide: ({ n }) => `abriu o guia de tamanhos ${n} ${plural(n, 'vez', 'vezes')}`,
-    revisited_products: ({ n }) => `voltou a ${n} ${plural(n, 'produto', 'produtos')} já ${plural(n, 'visto', 'vistos')}`,
+    revisited_products: ({ n }) =>
+      `voltou a ${n} ${plural(n, 'produto', 'produtos')} já ${plural(n, 'visto', 'vistos')}`,
     active_days: ({ n }) => `esteve ativo em ${n} dias diferentes`,
     sessions: ({ n }) => `em ${n} ${plural(n, 'sessão', 'sessões')}`,
     single_page: () => 'viu uma única página',

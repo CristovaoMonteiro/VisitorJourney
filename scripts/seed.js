@@ -65,7 +65,13 @@ function segmentReport(dataset) {
  * Generates and stores the dataset. Exported so `npm run dev:memory` can seed too.
  * Assumes a MongoDB connection is already open.
  */
-async function seed({ seed: seedValue = DEFAULT_SEED, visitors = DEFAULT_VISITORS, anchor, reset = false, log = console.log } = {}) {
+async function seed({
+  seed: seedValue = DEFAULT_SEED,
+  visitors = DEFAULT_VISITORS,
+  anchor,
+  reset = false,
+  log = console.log,
+} = {}) {
   const dataset = generateDataset({ seed: seedValue, visitors, ...(anchor ? { anchorDay: anchor } : {}) });
   assertValid(dataset.events);
 
@@ -74,7 +80,9 @@ async function seed({ seed: seedValue = DEFAULT_SEED, visitors = DEFAULT_VISITOR
     log(`--reset: removed all ${deletedCount} existing events`);
   } else {
     // Seeded visitor IDs are deterministic, so only previous seed data is replaced.
-    const { deletedCount } = await Event.deleteMany({ visitorId: { $in: dataset.visitors.map((v) => v.id) } });
+    const { deletedCount } = await Event.deleteMany({
+      visitorId: { $in: dataset.visitors.map((v) => v.id) },
+    });
     if (deletedCount) log(`Replaced ${deletedCount} events from a previous seed (real visitors kept)`);
   }
 

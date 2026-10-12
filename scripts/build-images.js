@@ -71,7 +71,10 @@ async function buildPhoto(photo) {
 
 function creditsMarkdown() {
   const rows = photos
-    .map((p) => `| \`${p.key}\` | [${p.photographer}](${p.profileUrl}) | [Unsplash](${p.pageUrl}) | Unsplash License |`)
+    .map(
+      (p) =>
+        `| \`${p.key}\` | [${p.photographer}](${p.profileUrl}) | [Unsplash](${p.pageUrl}) | Unsplash License |`,
+    )
     .join('\n');
   return `# Credits
 

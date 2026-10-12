@@ -7,7 +7,16 @@ import { d, segmentLabel, sourceLabel, escapeHTML } from './strings.js';
 import { EVENT_ICONS, DEVICE_ICONS } from './icons.js';
 
 const KEY_EVENTS = new Set(['add_to_cart', 'checkout_start', 'purchase', 'newsletter_signup']);
-const SIGNALS = ['sessions', 'activeDays', 'distinctProducts', 'filtersApplied', 'sizeGuideViews', 'addToCart', 'checkoutStarts', 'purchases'];
+const SIGNALS = [
+  'sessions',
+  'activeDays',
+  'distinctProducts',
+  'filtersApplied',
+  'sizeGuideViews',
+  'addToCart',
+  'checkoutStarts',
+  'purchases',
+];
 
 let productNames = new Map();
 let lastFocus = null;
@@ -19,9 +28,16 @@ export function setProducts(products) {
 const locale = () => (getLang() === 'pt' ? 'pt-PT' : 'en-GB');
 const money = (n) => new Intl.NumberFormat(locale(), { style: 'currency', currency: 'EUR' }).format(n);
 const productName = (id) => (productNames.has(id) ? localized(productNames.get(id)) : id);
-const time = (iso) => new Date(iso).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+const time = (iso) =>
+  new Date(iso).toLocaleTimeString(locale(), { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 const dateTime = (iso) =>
-  new Date(iso).toLocaleString(locale(), { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  new Date(iso).toLocaleString(locale(), {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 const chip = (text) => `<span class="prop">${escapeHTML(text)}</span>`;
 
 /** Human label + property chips for one event. */
@@ -34,14 +50,20 @@ function describe(event) {
     case 'click_cta':
       return { label: `${label} “${p.cta.replace(/_/g, ' ')}”`, chips: p.href ? [`→ ${p.href}`] : [] };
     case 'view_product':
-      return { label: `${label} · ${productName(p.productId)}`, chips: [money(p.price), p.category, ...(p.onSale ? ['sale'] : [])] };
+      return {
+        label: `${label} · ${productName(p.productId)}`,
+        chips: [money(p.price), p.category, ...(p.onSale ? ['sale'] : [])],
+      };
     case 'apply_filter':
       return { label: `${label} · ${p.filter}`, chips: [p.value] };
     case 'view_size_guide':
       return { label: `${label} · ${productName(p.productId)}`, chips: [p.category] };
     case 'add_to_cart':
     case 'remove_from_cart':
-      return { label: `${label} · ${productName(p.productId)}`, chips: [`${p.size}`, `× ${p.qty}`, money(p.price)] };
+      return {
+        label: `${label} · ${productName(p.productId)}`,
+        chips: [`${p.size}`, `× ${p.qty}`, money(p.price)],
+      };
     case 'checkout_start':
       return { label, chips: [`× ${p.itemCount}`, money(p.value)] };
     case 'purchase':
@@ -55,7 +77,9 @@ function describe(event) {
 
 function sessionMeta(session) {
   const minutes = Math.max(1, Math.round((new Date(session.end) - new Date(session.start)) / 60000));
-  const acquisition = [sourceLabel(session.source), session.utm?.medium, session.utm?.campaign].filter(Boolean).join(' / ');
+  const acquisition = [sourceLabel(session.source), session.utm?.medium, session.utm?.campaign]
+    .filter(Boolean)
+    .join(' / ');
   return `${dateTime(session.start)} · ${minutes} min · ${escapeHTML(acquisition)} · ${d(`device.${session.device}`)}`;
 }
 
@@ -114,7 +138,8 @@ function detailHTML(v) {
     ? `<p class="muted">${d('detail.alsoMatches')}: ${v.tags.map((tag) => `<span class="tag">${segmentLabel(tag)}</span>`).join('')}</p>`
     : '';
   const signals = SIGNALS.map(
-    (key) => `<div class="signal"><span class="signal__value">${v.signals[key]}</span><span class="signal__label">${d(`signal.${key}`)}</span></div>`,
+    (key) =>
+      `<div class="signal"><span class="signal__value">${v.signals[key]}</span><span class="signal__label">${d(`signal.${key}`)}</span></div>`,
   ).join('');
 
   return `

@@ -30,9 +30,7 @@ function createEventsRouter({ rateLimit = createRateLimiter() } = {}) {
 
     const now = new Date();
     const results = events.map((raw) => validateEvent(raw, { now }));
-    const invalid = results
-      .map((r, index) => (r.ok ? null : { index, errors: r.errors }))
-      .filter(Boolean);
+    const invalid = results.map((r, index) => (r.ok ? null : { index, errors: r.errors })).filter(Boolean);
     if (invalid.length > 0) {
       return res.status(400).json({ error: 'Invalid events', details: invalid });
     }

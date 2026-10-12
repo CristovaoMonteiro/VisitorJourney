@@ -116,7 +116,8 @@ const STRINGS = {
 
     'state.loading': 'Loading…',
     'state.error': 'The analytics could not be loaded. Is the database connected?',
-    'state.empty': 'No sessions in this period yet. Run `npm run seed` or browse the store with analytics accepted.',
+    'state.empty':
+      'No sessions in this period yet. Run `npm run seed` or browse the store with analytics accepted.',
   },
 
   pt: {
@@ -233,7 +234,8 @@ const STRINGS = {
 
     'state.loading': 'A carregar…',
     'state.error': 'Não foi possível carregar a análise. A base de dados está ligada?',
-    'state.empty': 'Ainda não há sessões neste período. Corra `npm run seed` ou navegue na loja com a análise aceite.',
+    'state.empty':
+      'Ainda não há sessões neste período. Corra `npm run seed` ou navegue na loja com a análise aceite.',
   },
 };
 
@@ -250,7 +252,9 @@ const SEGMENT_LABELS = {
 export function d(key, vars = {}) {
   const lang = getLang();
   const template = STRINGS[lang]?.[key] ?? STRINGS.en[key] ?? key;
-  return template.replace(/\{(\w+)\}/g, (m, name) => (name in vars ? vars[name] : name === 'brand' ? CONFIG.brand.name : m));
+  return template.replace(/\{(\w+)\}/g, (m, name) =>
+    name in vars ? vars[name] : name === 'brand' ? CONFIG.brand.name : m,
+  );
 }
 
 export const segmentLabel = (id) => SEGMENT_LABELS[id]?.[getLang()] ?? id;

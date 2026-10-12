@@ -1,8 +1,4 @@
-const {
-  segmentVisitor,
-  extractSignals,
-  intentScore,
-} = require('../server/segmentation/segmentation');
+const { segmentVisitor, extractSignals, intentScore } = require('../server/segmentation/segmentation');
 const baseConfig = require('../server/segmentation/segmentation.config');
 
 const NOW = new Date('2026-10-11T12:00:00Z');
@@ -35,13 +31,21 @@ const analyse = (events, options) => segmentVisitor(events, { now: NOW, ...optio
 
 describe('segment rules', () => {
   test('Curious: one page, a few seconds, no interaction', () => {
-    const result = analyse([ev('page_view', { pageType: 'home' }), ev('scroll_depth', { depth: 25 }, { minutesAgo: -0.2 })]);
+    const result = analyse([
+      ev('page_view', { pageType: 'home' }),
+      ev('scroll_depth', { depth: 25 }, { minutesAgo: -0.2 }),
+    ]);
     expect(result.segment).toBe('curious');
-    expect(result.explanation.en).toBe('Classified as Curious: saw a single page, stayed 12 s and did not interact.');
+    expect(result.explanation.en).toBe(
+      'Classified as Curious: saw a single page, stayed 12 s and did not interact.',
+    );
   });
 
   test('Curious is broken by any interaction', () => {
-    const result = analyse([ev('page_view', { pageType: 'home' }), ev('click_cta', { cta: 'hero_collection' })]);
+    const result = analyse([
+      ev('page_view', { pageType: 'home' }),
+      ev('click_cta', { cta: 'hero_collection' }),
+    ]);
     expect(result.segment).not.toBe('curious');
   });
 
@@ -129,7 +133,9 @@ describe('segment rules', () => {
       ev('page_view', { pageType: 'collection' }, { session: 'b' }),
     ]);
     expect(result.segment).toBe('returning');
-    expect(result.explanation.en).toBe('Classified as Returning: was active on 2 different days and across 2 sessions.');
+    expect(result.explanation.en).toBe(
+      'Classified as Returning: was active on 2 different days and across 2 sessions.',
+    );
   });
 
   test('Two sessions on the same day are not "Returning"', () => {
@@ -186,9 +192,17 @@ describe('segment rules', () => {
   });
 
   test('Thresholds come from the config and can be tuned', () => {
-    const events = [view('p01', { minutesAgo: 3 }), view('p02', { minutesAgo: 2 }), ev('apply_filter', { filter: 'sort', value: 'price-asc' }), ev('view_size_guide', { productId: 'p01', category: 'shirts' })];
+    const events = [
+      view('p01', { minutesAgo: 3 }),
+      view('p02', { minutesAgo: 2 }),
+      ev('apply_filter', { filter: 'sort', value: 'price-asc' }),
+      ev('view_size_guide', { productId: 'p01', category: 'shirts' }),
+    ];
     expect(analyse(events).segment).toBe('explorer');
-    const loose = { ...baseConfig, segments: { ...baseConfig.segments, comparer: { minDistinctProducts: 2, minComparisonSignals: 2 } } };
+    const loose = {
+      ...baseConfig,
+      segments: { ...baseConfig.segments, comparer: { minDistinctProducts: 2, minComparisonSignals: 2 } },
+    };
     expect(analyse(events, { config: loose }).segment).toBe('comparer');
   });
 
@@ -222,7 +236,15 @@ describe('intent score', () => {
   });
 
   test('the score never exceeds 100', () => {
-    const buys = Array.from({ length: 10 }, () => ev('purchase', { orderRef: 'ORL-ABCDEF', itemCount: 1, value: 59, shipping: 6.95, delivery: 'standard' }));
+    const buys = Array.from({ length: 10 }, () =>
+      ev('purchase', {
+        orderRef: 'ORL-ABCDEF',
+        itemCount: 1,
+        value: 59,
+        shipping: 6.95,
+        delivery: 'standard',
+      }),
+    );
     expect(score(buys)).toBe(100);
   });
 
@@ -234,7 +256,10 @@ describe('intent score', () => {
   });
 
   test('the breakdown explains where the points come from', () => {
-    const { breakdown } = intentScore([view('p01'), view('p02'), ev('checkout_start', { itemCount: 1, value: 59 })], { now: NOW });
+    const { breakdown } = intentScore(
+      [view('p01'), view('p02'), ev('checkout_start', { itemCount: 1, value: 59 })],
+      { now: NOW },
+    );
     expect(breakdown).toEqual({ view_product: 6, checkout_start: 20 });
   });
 });

@@ -89,7 +89,12 @@
                 <h2 id="funnel-title" class="card__title" data-d="funnel.title"></h2>
                 <p class="card__hint" data-d="funnel.hint"></p>
               </div>
-              <button type="button" class="dash-btn dash-btn--ghost dash-btn--small" data-toggle-table data-d="table.view"></button>
+              <button
+                type="button"
+                class="dash-btn dash-btn--ghost dash-btn--small"
+                data-toggle-table
+                data-d="table.view"
+              ></button>
             </header>
             <div class="chart-box chart-box--funnel"><canvas data-chart="funnel" role="img"></canvas></div>
             <div class="table-box" data-table hidden></div>
@@ -101,9 +106,16 @@
                 <h2 id="segments-title" class="card__title" data-d="segments.title"></h2>
                 <p class="card__hint" data-d="segments.hint"></p>
               </div>
-              <button type="button" class="dash-btn dash-btn--ghost dash-btn--small" data-toggle-table data-d="table.view"></button>
+              <button
+                type="button"
+                class="dash-btn dash-btn--ghost dash-btn--small"
+                data-toggle-table
+                data-d="table.view"
+              ></button>
             </header>
-            <div class="chart-box chart-box--segments"><canvas data-chart="segments" role="img"></canvas></div>
+            <div class="chart-box chart-box--segments">
+              <canvas data-chart="segments" role="img"></canvas>
+            </div>
             <div class="table-box" data-table hidden></div>
           </section>
 
@@ -113,7 +125,12 @@
                 <h2 id="daily-title" class="card__title" data-d="daily.title"></h2>
                 <p class="card__hint" data-d="daily.hint"></p>
               </div>
-              <button type="button" class="dash-btn dash-btn--ghost dash-btn--small" data-toggle-table data-d="table.view"></button>
+              <button
+                type="button"
+                class="dash-btn dash-btn--ghost dash-btn--small"
+                data-toggle-table
+                data-d="table.view"
+              ></button>
             </header>
             <div class="chart-box chart-box--daily"><canvas data-chart="daily" role="img"></canvas></div>
             <div class="table-box" data-table hidden></div>
@@ -128,8 +145,14 @@
             </div>
             <label class="search">
               <span class="visually-hidden" data-d="visitors.search"></span>
-              <input type="search" name="q" autocomplete="off" spellcheck="false" data-visitor-search
-                     data-d-attr="placeholder:visitors.search" />
+              <input
+                type="search"
+                name="q"
+                autocomplete="off"
+                spellcheck="false"
+                data-visitor-search
+                data-d-attr="placeholder:visitors.search"
+              />
             </label>
           </header>
           <div class="visitor-table-wrap">
@@ -137,11 +160,21 @@
               <thead>
                 <tr>
                   <th scope="col"><span data-d="visitors.col.id"></span></th>
-                  <th scope="col" data-sort="segment"><button type="button" data-d="visitors.col.segment"></button></th>
-                  <th scope="col" data-sort="score" class="num"><button type="button" data-d="visitors.col.score"></button></th>
-                  <th scope="col" data-sort="sessions" class="num"><button type="button" data-d="visitors.col.sessions"></button></th>
-                  <th scope="col" data-sort="lastActivity"><button type="button" data-d="visitors.col.lastActivity"></button></th>
-                  <th scope="col" data-sort="source"><button type="button" data-d="visitors.col.source"></button></th>
+                  <th scope="col" data-sort="segment">
+                    <button type="button" data-d="visitors.col.segment"></button>
+                  </th>
+                  <th scope="col" data-sort="score" class="num">
+                    <button type="button" data-d="visitors.col.score"></button>
+                  </th>
+                  <th scope="col" data-sort="sessions" class="num">
+                    <button type="button" data-d="visitors.col.sessions"></button>
+                  </th>
+                  <th scope="col" data-sort="lastActivity">
+                    <button type="button" data-d="visitors.col.lastActivity"></button>
+                  </th>
+                  <th scope="col" data-sort="source">
+                    <button type="button" data-d="visitors.col.source"></button>
+                  </th>
                   <th scope="col"><span data-d="visitors.col.device"></span></th>
                 </tr>
               </thead>
@@ -155,7 +188,15 @@
 
     <!-- Visitor journey detail (opened from the table; URL hash #visitor=<id>) -->
     <div class="drawer-backdrop" data-drawer-backdrop hidden></div>
-    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" data-drawer hidden tabindex="-1">
+    <aside
+      class="drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="drawer-title"
+      data-drawer
+      hidden
+      tabindex="-1"
+    >
       <div class="drawer__inner" data-drawer-content></div>
     </aside>
   </body>

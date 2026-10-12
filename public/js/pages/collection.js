@@ -16,7 +16,9 @@ function readState() {
     category: CONFIG.categories.includes(category) ? category : 'all',
     price: CONFIG.priceRanges.some((r) => r.id === price) ? price : 'any',
     sale: params.get('sale') === '1',
-    sort: ['featured', 'price-asc', 'price-desc'].includes(params.get('sort')) ? params.get('sort') : 'featured',
+    sort: ['featured', 'price-asc', 'price-desc'].includes(params.get('sort'))
+      ? params.get('sort')
+      : 'featured',
   };
 }
 
@@ -134,7 +136,9 @@ async function init() {
       syncControls(state);
       writeState(state);
       render(products, state);
-      window.dispatchEvent(new CustomEvent('filter:apply', { detail: { filter: 'clear', value: 'all', state } }));
+      window.dispatchEvent(
+        new CustomEvent('filter:apply', { detail: { filter: 'clear', value: 'all', state } }),
+      );
     }),
   );
 }
