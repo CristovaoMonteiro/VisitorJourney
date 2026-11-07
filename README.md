@@ -158,7 +158,7 @@ Read-only dashboard API: `GET /api/dashboard/overview`, `/api/dashboard/visitors
 - Newsletter and appointment forms are simulations: what is typed never leaves the browser
 - No third-party scripts, cookies or fonts; Chart.js and all images are self-hosted
 - Storage limitation: raw events expire automatically after 13 months (TTL index)
-- Suggested hosting in the EU (Render Frankfurt + Atlas EU region)
+- Hosted in the EU (Render Frankfurt + Atlas EU region)
 - A [privacy notice](public/privacy.html) explains all of the above to visitors (EN/PT)
 - All data in this repository is synthetic
 
