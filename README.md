@@ -1,14 +1,14 @@
 # VisitorJourney
 
-Fictional premium menswear store with first-party event tracking, a visitor journey dashboard and rule-based segmentation (Curious, Comparer, Ready to buy, Returning, Deal hunter). Each visitor gets a 0–100 intent score and a plain-language explanation. Node.js, Express, MongoDB. GDPR-friendly, synthetic data only.
-
-> A fictional premium menswear store with first-party event tracking, a visitor journey dashboard and rule-based intent scoring.
+Fictional premium menswear store with first-party event tracking, a visitor journey dashboard and rule-based segmentation (Curious, Explorer, Comparer, Ready to buy, Returning, Deal hunter). Each visitor gets a 0–100 intent score and a plain-language explanation. Node.js, Express, MongoDB. GDPR-friendly, synthetic data only.
 
 ![Dashboard screenshot](docs/dashboard.png)
 
 **Live demo:** [visitor-journey.onrender.com](https://visitor-journey.onrender.com) · **Store:** [`/`](https://visitor-journey.onrender.com) · **Dashboard:** [`/dashboard`](https://visitor-journey.onrender.com/dashboard)
 
 > Hosted on Render's free tier: after 15 minutes without traffic the service sleeps, so the first request can take up to a minute.
+>
+> The dashboard is intentionally public and read-only, so it can be opened without an account. Set `DASHBOARD_PASSWORD` to put it behind a password.
 
 ## Why this project
 
@@ -164,7 +164,7 @@ Read-only dashboard API: `GET /api/dashboard/overview`, `/api/dashboard/visitors
 
 ## Run locally
 
-Requirements: Node.js 20+.
+Requirements: Node.js 20.19+.
 
 **Quickest (no database to install):**
 
@@ -206,13 +206,13 @@ Store: `http://localhost:3000` · Dashboard: `http://localhost:3000/dashboard`
 
 The repo includes a [Render Blueprint](render.yaml): one free Node web service in Frankfurt.
 
-1. **MongoDB Atlas.** Create a free **M0** cluster in an EU region. In _Database Access_ create a user with a strong password. In _Network Access_ allow `0.0.0.0/0` (Render's free tier has no fixed outbound IP; the password protects access). In _Connect → Drivers_ copy the connection string and add the database name: `mongodb+srv://<user>:<password>@<cluster>/visitor-journey`.
+1. **MongoDB Atlas.** Create a free **M0** cluster in an EU region. Under _Security → Database & Network Access_, create a database user with a strong password and allow `0.0.0.0/0` (Render's free tier has no fixed outbound IP; the password protects access). On the cluster page, open _Connect → Drivers_, copy the connection string and add the database name: `mongodb+srv://<user>:<password>@<cluster>/visitor-journey`.
 2. **Seed the production database** from your machine: put that URI in `.env` as `MONGODB_URI` and run `npm run seed`.
 3. **Render.** _New → Blueprint_, connect this GitHub repository and apply `render.yaml`. When asked, paste `MONGODB_URI`; leave `DASHBOARD_PASSWORD` empty for a public dashboard. Render builds with `npm ci --omit=dev` and checks `/api/health`.
 4. **Open** `https://<your-service>.onrender.com` and `/dashboard`, then add the URL to _Live demo_ at the top of this README.
 5. **Keep the demo fresh (optional).** In GitHub → _Settings → Secrets and variables → Actions_, add a `MONGODB_URI` secret. The [Refresh demo data](.github/workflows/reseed-demo.yml) workflow re-runs the seed every Monday so "last 30 days" never goes empty; real visitors are kept.
 
-Notes: on the free plan the service sleeps after 15 minutes without traffic, so the first request can take ~30–50 s. Every push to `main` redeploys automatically and runs [CI](.github/workflows/ci.yml) (lint, formatting, tests).
+Notes: on the free plan the service sleeps after 15 minutes without traffic, so the first request can take up to a minute. Every push to `main` redeploys automatically and runs [CI](.github/workflows/ci.yml) (lint, formatting, tests).
 
 ## Design notes
 
