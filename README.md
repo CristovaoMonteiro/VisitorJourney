@@ -6,7 +6,9 @@ Fictional premium menswear store with first-party event tracking, a visitor jour
 
 ![Dashboard screenshot](docs/dashboard.png)
 
-**Live demo:** _added after the first deploy_ · **Store:** `/` · **Dashboard:** `/dashboard`
+**Live demo:** [visitor-journey.onrender.com](https://visitor-journey.onrender.com) · **Store:** [`/`](https://visitor-journey.onrender.com) · **Dashboard:** [`/dashboard`](https://visitor-journey.onrender.com/dashboard)
+
+> Hosted on Render's free tier: after 15 minutes without traffic the service sleeps, so the first request can take up to a minute.
 
 ## Why this project
 
