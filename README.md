@@ -10,6 +10,8 @@ Fictional premium menswear store with first-party event tracking, a visitor jour
 >
 > The dashboard is intentionally public and read-only, so it can be opened without an account. Set `DASHBOARD_PASSWORD` to put it behind a password.
 
+**Companion project:** [Orlo Recommender](https://orlo-recommender.onrender.com) is an explainable product recommender for the same fictional brand ([code](https://github.com/CristovaoMonteiro/OrloRecommender)).
+
 ## Why this project
 
 Analytics tools show where visitors go. They rarely answer the question growth teams actually care about: _what kind of customer is this?_ This project tracks each visitor's journey on a store and classifies them into a segment with an intent score and a plain-language explanation of why.
